@@ -1,5 +1,9 @@
 
 
+	Fixed Fx Buttons: Now each fx control the activation of both deck1 and Deck2
+		lights are not properly setup yet, knobs not yet working
+	Added shift function to sampler: now it will pause (cue) the relative sample
+
 Start:
 	Added Fx buttons: they toggle on/off FX effects but only on one deck (not on
 		both decks)

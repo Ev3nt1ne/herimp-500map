@@ -871,6 +871,88 @@
 					<normal />
 				</options>
 			</control>
+			<!--Pad MODE 4 (SHIFT mode) - Sampler Pause (aka cue)-->
+			<control>
+				<group>[Sampler1]</group>
+				<key>cue_default</key>
+				<description>PAD 1</description>
+				<status>0x96</status>
+				<midino>0x38</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler2]</group>
+				<key>cue_default</key>
+				<description>PAD 2</description>
+				<status>0x96</status>
+				<midino>0x39</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler3]</group>
+				<key>cue_default</key>
+				<description>PAD 3</description>
+				<status>0x96</status>
+				<midino>0x3A</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler4]</group>
+				<key>cue_default</key>
+				<description>PAD 4</description>
+				<status>0x96</status>
+				<midino>0x3B</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler5]</group>
+				<key>cue_default</key>
+				<description>PAD 5</description>
+				<status>0x96</status>
+				<midino>0x3C</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler6]</group>
+				<key>cue_default</key>
+				<description>PAD 6</description>
+				<status>0x96</status>
+				<midino>0x3D</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler7]</group>
+				<key>cue_default</key>
+				<description>PAD 7</description>
+				<status>0x96</status>
+				<midino>0x3E</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler8]</group>
+				<key>cue_default</key>
+				<description>PAD 8</description>
+				<status>0x96</status>
+				<midino>0x3F</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+
 			<!--Pad MODE 5 - Not assigned: 0x40 to 0x47-->
 			<!--Pad MODE 6 - Not assigned: 0x50 to 0x57-->
 			<!--Pad MODE 7 - Not assigned: 0x60 to 0x67-->
@@ -1286,6 +1368,87 @@
 					<normal />
 				</options>
 			</control>
+			<!--Pad MODE 4 (SHIFT mode) - Sampler Pause (aka cue)-->
+			<control>
+				<group>[Sampler1]</group>
+				<key>cue_default</key>
+				<description>PAD 1</description>
+				<status>0x97</status>
+				<midino>0x38</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler2]</group>
+				<key>cue_default</key>
+				<description>PAD 2</description>
+				<status>0x97</status>
+				<midino>0x39</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler3]</group>
+				<key>cue_default</key>
+				<description>PAD 3</description>
+				<status>0x97</status>
+				<midino>0x3A</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler4]</group>
+				<key>cue_default</key>
+				<description>PAD 4</description>
+				<status>0x97</status>
+				<midino>0x3B</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler5]</group>
+				<key>cue_default</key>
+				<description>PAD 5</description>
+				<status>0x97</status>
+				<midino>0x3C</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler6]</group>
+				<key>cue_default</key>
+				<description>PAD 6</description>
+				<status>0x97</status>
+				<midino>0x3D</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler7]</group>
+				<key>cue_default</key>
+				<description>PAD 7</description>
+				<status>0x97</status>
+				<midino>0x3E</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Sampler8]</group>
+				<key>cue_default</key>
+				<description>PAD 8</description>
+				<status>0x97</status>
+				<midino>0x3F</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
 
 			<!--Pad MODE 5  Not assigned: 0x40 to 0x47-->
 			<!--Pad MODE 6  Not assigned: 0x50 to 0x57-->
@@ -1612,7 +1775,18 @@
 		<control>
 			<group>[EffectRack1_EffectUnit1_Effect1]</group>
 			<key>enabled</key>
-			<description>FX1</description>
+			<description>FX1-Deck1</description>
+			<status>0x90</status>
+			<midino>0x14</midino>
+			<options>
+				<!-- <script-binding /> -->
+				<normal />
+			</options>
+		</control>
+		<control>
+			<group>[EffectRack1_EffectUnit2_Effect1]</group>
+			<key>enabled</key>
+			<description>FX1-Deck2</description>
 			<status>0x90</status>
 			<midino>0x14</midino>
 			<options>
@@ -1622,9 +1796,20 @@
 		</control>
 
 		<control>
-			<group>[EffectRack1_EffectUnit2_Effect1]</group>
+			<group>[EffectRack1_EffectUnit1_Effect2]</group>
 			<key>enabled</key>
-			<description>FX2</description>
+			<description>FX2-Deck1</description>
+			<status>0x90</status>
+			<midino>0x15</midino>
+			<options>
+				<!-- <script-binding /> -->
+				<normal />
+			</options>
+		</control>
+		<control>
+			<group>[EffectRack1_EffectUnit2_Effect2]</group>
+			<key>enabled</key>
+			<description>FX2-Deck2</description>
 			<status>0x90</status>
 			<midino>0x15</midino>
 			<options>
@@ -1634,9 +1819,20 @@
 		</control>
 
 		<control>
-			<group>[EffectRack1_EffectUnit1_Effect2]</group>
+			<group>[EffectRack1_EffectUnit1_Effect3]</group>
 			<key>enabled</key>
-			<description>FX3</description>
+			<description>FX3-Deck1</description>
+			<status>0x90</status>
+			<midino>0x16</midino>
+			<options>
+				<!-- <script-binding /> -->
+				<normal />
+			</options>
+		</control>
+		<control>
+			<group>[EffectRack1_EffectUnit2_Effect3]</group>
+			<key>enabled</key>
+			<description>FX3-Deck2</description>
 			<status>0x90</status>
 			<midino>0x16</midino>
 			<options>
@@ -1646,9 +1842,20 @@
 		</control>
 
 		<control>
-			<group>[EffectRack1_EffectUnit2_Effect2]</group>
-			<key>enabled</key>
-			<description>FX4</description>
+			<group>[QuickEffectRack1_[Channel1]_Effect1]</group>
+		    <key>enabled</key>
+			<description>FX active/disable-Deck 1</description>
+			<status>0x90</status>
+			<midino>0x17</midino>
+			<options>
+				<!-- <script-binding /> -->
+				<normal />
+			</options>
+		</control>
+		<control>
+			<group>[QuickEffectRack1_[Channel2]_Effect1]</group>
+		    <key>enabled</key>
+			<description>FX active/disable-Deck 2</description>
 			<status>0x90</status>
 			<midino>0x17</midino>
 			<options>
@@ -1657,6 +1864,8 @@
 			</options>
 		</control>
 
+
+	<!-- Last Control - close -->
 	</controls>
 
 
