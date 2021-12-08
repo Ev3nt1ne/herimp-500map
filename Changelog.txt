@@ -1,5 +1,17 @@
 
-
+3:
+	Shift + Sync: changed to "match key" since it was redundant with long press
+		(still missing reset tempo)
+	Fixed Fx LED
+	Added behavior for filter knobs: now if at least one effect is active they
+		will propery control the dry/wet knob of the control. Here there was
+		also the possibility to attach this to the super-effects-knob (green)
+		but I decided that the wet/dry is better. Tell me if you have different
+		ideas
+	Fixed Quantize button: now properly activate quatize, instead shift+quantize
+		activate the keylock
+		
+2:
 	Fixed Fx Buttons: Now each fx control the activation of both deck1 and Deck2
 		lights are not properly setup yet, knobs not yet working
 	Added shift function to sampler: now it will pause (cue) the relative sample

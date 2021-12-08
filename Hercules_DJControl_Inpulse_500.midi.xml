@@ -110,9 +110,20 @@
 			<!--Q A-->
 			<control>
 				<group>[Channel1]</group>
-				<key>keylock</key>
-				<description>Q button</description>
+				<key>quantize</key>
+				<description>Quantize button - Deck 1</description>
 				<status>0x91</status>
+				<midino>0x02</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<!-- Shift + Q A-->
+			<control>
+				<group>[Channel1]</group>
+				<key>keylock</key>
+				<description>Keylock button (shift+quant) - Deck 1</description>
+				<status>0x94</status>
 				<midino>0x02</midino>
 				<options>
 					<normal />
@@ -247,9 +258,20 @@
 			<!--Q B-->
 			<control>
 				<group>[Channel2]</group>
-				<key>keylock</key>
-				<description>Q button</description>
+				<key>quantize</key>
+				<description>Quantize button - Deck 2</description>
 				<status>0x92</status>
+				<midino>0x02</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<!-- Shift + Q A-->
+			<control>
+				<group>[Channel2]</group>
+				<key>keylock</key>
+				<description>Keylock button (shift+quant) - Deck 2</description>
+				<status>0x95</status>
 				<midino>0x02</midino>
 				<options>
 					<normal />
@@ -362,8 +384,8 @@
 			<!--Sync-->
 			<control>
 				<group>[Channel1]</group>
-				<key>sync_master</key>
-				<description>SHIFT + Sync: Sync Master</description>
+				<key>sync_key</key>
+				<description>SHIFT + Sync: Match key</description>
 				<status>0x94</status>
 				<midino>0x05</midino>
 				<options>
@@ -432,8 +454,8 @@
 			<!--Sync-->
 			<control>
 				<group>[Channel2]</group>
-				<key>sync_master</key>
-				<description>SHIFT + Sync: Sync Master</description>
+				<key>sync_key</key>
+				<description>SHIFT + Sync: Sync key</description>
 				<status>0x95</status>
 				<midino>0x05</midino>
 				<options>
@@ -1538,6 +1560,7 @@
 				</options>
 			</control>
 			<!--Filter-->
+			<!--
 			<control>
 				<group>[QuickEffectRack1_[Channel1]]</group>
 				<key>super1</key>
@@ -1546,6 +1569,17 @@
 				<midino>0x01</midino>
 				<options>
 					<normal />
+				</options>
+			</control>
+			-->
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.filterKnob1</key>
+				<description>Filter Deck A</description>
+				<status>0xB1</status>
+				<midino>0x01</midino>
+				<options>
+					<script-binding/>
 				</options>
 			</control>
 			<!--Pitch sliders-->
@@ -1670,15 +1704,27 @@
 			</control>
 			<!--Filter-->
 			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.filterKnob2</key>
+				<description>Filter Deck B</description>
+				<status>0xB2</status>
+				<midino>0x01</midino>
+				<options>
+					<script-binding/>
+				</options>
+			</control>
+			<!--
+			<control>
 				<group>[QuickEffectRack1_[Channel2]]</group>
 				<key>super1</key>
-				<description>Filter Deck A</description>
+				<description>Filter Deck B</description>
 				<status>0xB2</status>
 				<midino>0x01</midino>
 				<options>
 					<normal />
 				</options>
 			</control>
+			-->
 			<!--Pitch sliders-->
 			<control>
 				<group>[Channel2]</group>
@@ -1884,7 +1930,7 @@
 				<off>0x0</off>
 			</output>
 			<output>
-				<group>[EffectRack1_EffectUnit2_Effect1]</group>
+				<group>[EffectRack1_EffectUnit1_Effect2]</group>
 				<key>enabled</key>
 				<description>FX2-LED</description>
 				<minimum>0.5</minimum>
@@ -1895,7 +1941,7 @@
 				<off>0x0</off>
 			</output>
 			<output>
-				<group>[EffectRack1_EffectUnit1_Effect2]</group>
+				<group>[EffectRack1_EffectUnit1_Effect3]</group>
 				<key>enabled</key>
 				<description>FX3-LED</description>
 				<minimum>0.5</minimum>
@@ -1905,6 +1951,7 @@
 				<on>0x7f</on>
 				<off>0x0</off>
 			</output>
+			<!--
 			<output>
 				<group>[EffectRack1_EffectUnit2_Effect2]</group>
 				<key>enabled</key>
@@ -1916,7 +1963,7 @@
 				<on>0x7f</on>
 				<off>0x0</off>
 			</output>
-
+			-->
 			<!--LED Transport-->
 			<output>
 				<group>[Channel1]</group>
@@ -1997,8 +2044,8 @@
 			</output>
 			<output>
 				<group>[Channel1]</group>
-				<key>keylock</key>
-				<description>Q button Deck A</description>
+				<key>quantize</key>
+				<description>Quantize LED - Deck 1</description>
 				<minimum>0.5</minimum>
 				<maximum>1</maximum>
 				<status>0x91</status>
@@ -2074,8 +2121,8 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>keylock</key>
-				<description>Q button Deck B</description>
+				<key>quantize</key>
+				<description>Quantize LED - Deck 2</description>
 				<minimum>0.5</minimum>
 				<maximum>1</maximum>
 				<status>0x92</status>

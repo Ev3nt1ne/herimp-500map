@@ -2,17 +2,40 @@
 
 1: managed to connect the button to the mixxx, but:
   A: the knob is not controlling the overall fx (red knob in mixxx)
-    the red knob: EffectRack1_EffectUnit1 mix PArameter: 0.5 Direction FROM_AND_TO_WIDGET emit: PRESS
+    the red knob: EffectRack1_EffectUnit1/2, mix -  Parameter: 0.5 Direction FROM_AND_TO_WIDGET emit: PRESS
+    also there is presenta super knob (green) EffectRack1_EffectUnit1/2, super1
+        but i think it is better the dry wet one
+    Steps:
+        1: test the normal behavior
+            A: I connect only deck1 to callback
+            B: LED are only on deck 1
+        2: improve on that
+
 2: obtain the beat align lights from wireshark
     jog lights up at the end of the song (I can get the signal)
 
-3: shift sync to syncronizhe key
-
 4: mode 5: fix key -1 -0.5 + 0.5 + 1 - (below)
 
-5: sampler: shit+number to pause
-    also both left and right command the same 8 samplers. I think it is ok, but maybe improve
+5: the 3 mode on the crossfader (smooth, abrupt and circle)
+    need to understand where they go in mixxx
 
 6: the browser knob: don't make it flash as default but make it change color based on the point of the song execution (violet to red when the song is ending)
 
 7: fx lights are messed up
+
+8: when I press shift a lot of lights disappear (but not the hot cue ones)
+    it can be cool to exploit this behavior
+
+10: in the .js init() function there are 4 deprecated call (connectControl)
+
+11: I don't understand Sysex messages: not implemented
+
+12: Soft-takeover for pitch and other stuff (like also fx knobs)
+    I can put soft take overs also in the xml file (maybe better)
+
+13: check jogwheel functionality
+
+14: The color of hotcues is accessible with engine.getValue('[ChannelN]', 'hotcue_X_color')
+    (where N and X are the respective Deck and hotcue whose information is being accessed) as an RGB color code
+
+15: Reset tempo (cannot do with shift + sync since it is already taken)

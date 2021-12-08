@@ -7,16 +7,16 @@
 // * Version 1.0c (Fall 2020)
 // * Forum: https://mixxx.discourse.group/t/hercules-djcontrol-inpulse-500/19739
 // * Wiki: https://mixxx.org/wiki/doku.php/hercules_djcontrol_inpulse_500
-// 
- 
-//  Version 1.0c: 
+//
+
+//  Version 1.0c:
 //	* Hot Cue: implementation of the Color API (Work in progress)
 //		- Assigned color directly to pad (XML)
 //	* Added DECK LED number - On when playing
 //  * Moved Beatjump to Pad mode 3 (Slicer)
 //	* Set different color for upper (Sampler 1-4) and lower (Sampler 5-8) sampler pads
 //
-//  Version 1.0 - Based upon Inpulse 300 v1.2 (official) 				  
+//  Version 1.0 - Based upon Inpulse 300 v1.2 (official)
 //
 // TO DO: Functions that could be implemented to the script:
 //
@@ -24,7 +24,7 @@
 // * Loop: Keep SLIP active (if already enabled) when exiting from rolls
 // * FX/Filter:
 //		- See how to preselect effects for a rack to use button FX1/2/3/4
-// * Assing Crossfader curve for swtich 
+// * Assing Crossfader curve for swtich
 //
 // ****************************************************************************
 var DJCi500 = {};
@@ -46,6 +46,9 @@ DJCi500.kScratchActionScratch = 1;
 DJCi500.kScratchActionSeek = 2;
 DJCi500.kScratchActionBend = 3;
 
+//Ev3nt1ne Global Var:
+DJCi500.FxActive = [0, 0, 0]; //Here I decided to put only 3 effects
+
 DJCi500.vuMeterUpdateMaster = function(value, _group, _control) {
     value = (value * 122) + 5;
     midi.sendShortMsg(0xB0, 0x40, value);
@@ -54,7 +57,7 @@ DJCi500.vuMeterUpdateMaster = function(value, _group, _control) {
 
 DJCi500.vuMeterUpdateDeck = function(value, group, _control, _status) {
 	value = (value * 122) + 5;
-	var status = (group === "[Channel1]") ? 0xB1 : 0xB2;	
+	var status = (group === "[Channel1]") ? 0xB1 : 0xB2;
 	midi.sendShortMsg(status, 0x40, value);
 };
 
@@ -66,20 +69,20 @@ DJCi500.init = function() {
     1: DJCi500.kScratchActionNone,
     2: DJCi500.kScratchActionNone
     };
-	
+
 	DJCi500.AutoHotcueColors = true;
-	
+
     // Turn On Vinyl buttons LED(one for each deck).
     midi.sendShortMsg(0x91, 0x03, 0x7F);
     midi.sendShortMsg(0x92, 0x03, 0x7F);
 	//Turn On Browser button LED
 	midi.sendShortMsg(0x90, 0x05, 0x10);
 	//Softtakeover for Pitch fader
-   engine.softTakeover("[Channel1]", "rate", true);
-   engine.softTakeover("[Channel2]", "rate", true);
-   engine.softTakeoverIgnoreNextValue("[Channel1]", "rate");
-   engine.softTakeoverIgnoreNextValue("[Channel2]", "rate");
-   
+    engine.softTakeover("[Channel1]", "rate", true);
+    engine.softTakeover("[Channel2]", "rate", true);
+    engine.softTakeoverIgnoreNextValue("[Channel1]", "rate");
+    engine.softTakeoverIgnoreNextValue("[Channel2]", "rate");
+
 	// Connect the VUMeters
     engine.connectControl("[Channel1]", "VuMeter", "DJCi500.vuMeterUpdateDeck");
 	engine.getValue("[Channel1]", "VuMeter", "DJCi500.vuMeterUpdateDeck");
@@ -87,11 +90,17 @@ DJCi500.init = function() {
 	engine.getValue("[Channel2]", "VuMeter", "DJCi500.vuMeterUpdateDeck");
     engine.connectControl("[Master]", "VuMeterL", "DJCi500.vuMeterUpdateMaster");
     engine.connectControl("[Master]", "VuMeterR", "DJCi500.vuMeterUpdateMaster");
-	
+
 	engine.getValue("[Master]", "VuMeterL", "DJCi500.vuMeterUpdateMaster");
     engine.getValue("[Master]", "VuMeterR", "DJCi500.vuMeterUpdateMaster");
 	engine.getValue("[Controls]", "AutoHotcueColors", "DJCi500.AutoHotcueColors");
-	
+
+    //Ev3nt1ne Code
+    var fx1Connection = engine.makeConnection('[EffectRack1_EffectUnit1_Effect1]', 'enabled', DJCi500.fx1Callback);
+    var fx2Connection = engine.makeConnection('[EffectRack1_EffectUnit1_Effect2]', 'enabled', DJCi500.fx2Callback);
+    var fx3Connection = engine.makeConnection('[EffectRack1_EffectUnit1_Effect3]', 'enabled', DJCi500.fx3Callback);
+    //var fx4Connection = engine.makeConnection('[EffectRack1_EffectUnit1_Effect4]', 'enabled', DJCi500.fx4Callback);
+
 	// Ask the controller to send all current knob/slider values over MIDI, which will update
     // the corresponding GUI controls in MIXXX.
     midi.sendShortMsg(0xB0, 0x7F, 0x7F);
@@ -155,7 +164,7 @@ DJCi500.wheelTouchShift = function(channel, control, value, _status, _group) {
     if (value > 0) {
         DJCi500._scratchEnable(deck);
         DJCi500.scratchAction[deck] = DJCi500.kScratchActionSeek;
-				 
+
     } else {
         // Released the wheel.
         engine.scratchDisable(deck);
@@ -208,9 +217,43 @@ DJCi500.loopHalveDouble = function (channel, control, value, status, group) {
         script.toggleControl(group, "loop_double");
     }
 };
-																						  
+
+// Ev3nt1ne code
+DJCi500.fx1Callback = function (value, group, control) {
+    DJCi500.FxActive[0] = value;
+};
+DJCi500.fx2Callback = function (value, group, control) {
+    DJCi500.FxActive[1] = value;
+};
+DJCi500.fx3Callback = function (value, group, control) {
+    DJCi500.FxActive[2] = value;
+};
+DJCi500.fx4Callback = function (value, group, control) {
+    //DJCi500.FxActive[0] = value;
+};
+DJCi500.filterKnob1 = function (channel, control, value, status, group) {
+    var fx_active = (DJCi500.FxActive[0] || DJCi500.FxActive[1] || DJCi500.FxActive[2]);
+    //engine.getValue(string group, string key);
+    if (fx_active) {
+        engine.setValue("[EffectRack1_EffectUnit1]", "mix", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+    } else {
+        engine.setValue("[QuickEffectRack1_[Channel1]]", "super1", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+    }
+};
+DJCi500.filterKnob2 = function (channel, control, value, status, group) {
+    var fx_active = (DJCi500.FxActive[0] || DJCi500.FxActive[1] || DJCi500.FxActive[2]);
+    //engine.getValue(string group, string key);
+    if (fx_active) {
+        engine.setValue("[EffectRack1_EffectUnit2]", "mix", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+    } else {
+        engine.setValue("[QuickEffectRack1_[Channel2]]", "super1", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+    }
+};
+
+
+/////
+
 DJCi500.shutdown = function() {
-										
+
 	midi.sendShortMsg(0xB0, 0x7F, 0x7E);
 };
-	
