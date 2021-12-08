@@ -1,0 +1,7 @@
+
+
+1: managed to connect the button to the mixxx, but:
+  A: only one to one, not one to both
+  B: the knob is not controlling the overall fx (red knob in mixxx)
+    the red knob: EffectRack1_EffectUnit1 mix PArameter: 0.5 Direction FROM_AND_TO_WIDGET emit: PRESS
+2: the lights are not lightining

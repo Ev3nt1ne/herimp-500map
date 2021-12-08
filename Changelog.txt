@@ -1,0 +1,6 @@
+
+
+Start:
+	Added Fx buttons: they toggle on/off FX effects but only on one deck (not on
+		both decks)
+	Added Fx Lights. Tested and working (maybe the light is not enough bright)

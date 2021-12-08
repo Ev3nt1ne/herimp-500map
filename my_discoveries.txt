@@ -1,0 +1,10 @@
+
+https://github.com/Dancephy/Mixxx-Pioneer-DDJ-SB3
+
+A:
+    <group>[QuickEffectRack1_[Channel1]_Effect1]</group>
+    <key>enabled</key>
+
+    This apply the effects or remove them
+
+B:
