@@ -45,12 +45,14 @@ DJCi500.kScratchActionNone = 0;
 DJCi500.kScratchActionScratch = 1;
 DJCi500.kScratchActionSeek = 2;
 DJCi500.kScratchActionBend = 3;
+DJCi500.FxLedtimer;
 
 //Ev3nt1ne Global Var:
 DJCi500.FxD1Active = [0, 0, 0]; //Here I decided to put only 3 effects
 DJCi500.FxD2Active = [0, 0, 0]; //Here I decided to put only 3 effects
-
 DJCi500.FxDeckSel = 0; // state variable for fx4 to decide the deck
+DJCi500.pitchRanges = [0.08, 0.32, 1]; //select pitch range
+DJCi500.pitchRangesId = [0, 0]; //id of the array, one for each deck
 
 DJCi500.vuMeterUpdateMaster = function(value, _group, _control) {
     value = (value * 122) + 5;
@@ -110,6 +112,8 @@ DJCi500.init = function() {
 	// Ask the controller to send all current knob/slider values over MIDI, which will update
     // the corresponding GUI controls in MIXXX.
     midi.sendShortMsg(0xB0, 0x7F, 0x7F);
+
+    DJCi500.FxLedtimer = engine.beginTimer(250,"DJCi500.blinkFxLed()");
 };
 
 
@@ -227,21 +231,89 @@ DJCi500.loopHalveDouble = function (channel, control, value, status, group) {
 // Ev3nt1ne code
 DJCi500.fx1D1Callback = function (value, group, control) {
     DJCi500.FxD1Active[0] = value;
+
+    //LED
+    if (DJCi500.FxD1Active[0] && DJCi500.FxD2Active[0])
+    {
+        midi.sendShortMsg(0x90, 0x14, 0x7F);
+    }
+    //XOR
+    /*
+    else if ((DJCi500.FxD1Active[0] && !DJCi500.FxD2Active[0]) || (!DJCi500.FxD1Active[0] && DJCi500.FxD2Active[0])) {
+        if (!DJCi500.blinkingLed)
+        {
+            DJCi500.timer[0] = engine.beginTimer(250,"DJCi500.blinkFxLed()");
+        }
+        DJCi500.blinkingLed = DJCi500.blinkingLed + 1;
+    }
+    // both 0
+    else {
+    */
+    else if (!DJCi500.FxD1Active[0] && !DJCi500.FxD2Active[0]){
+        midi.sendShortMsg(0x90, 0x14, 0x0);
+    }
+
 };
 DJCi500.fx2D1Callback = function (value, group, control) {
     DJCi500.FxD1Active[1] = value;
+
+    //LED
+    if (DJCi500.FxD1Active[1] && DJCi500.FxD2Active[1])
+    {
+        midi.sendShortMsg(0x90, 0x15, 0x7F);
+    }
+    else if (!DJCi500.FxD1Active[1] && !DJCi500.FxD2Active[1]){
+        midi.sendShortMsg(0x90, 0x15, 0x0);
+    }
 };
 DJCi500.fx3D1Callback = function (value, group, control) {
     DJCi500.FxD1Active[2] = value;
+
+    //LED
+    if (DJCi500.FxD1Active[2] && DJCi500.FxD2Active[2])
+    {
+        midi.sendShortMsg(0x90, 0x16, 0x7F);
+    }
+    else if (!DJCi500.FxD1Active[2] && !DJCi500.FxD2Active[2]){
+        midi.sendShortMsg(0x90, 0x16, 0x0);
+    }
 };
 DJCi500.fx1D2Callback = function (value, group, control) {
     DJCi500.FxD2Active[0] = value;
+
+    //LED
+    if (DJCi500.FxD1Active[0] && DJCi500.FxD2Active[0])
+    {
+        midi.sendShortMsg(0x90, 0x14, 0x7F);
+    }
+    else if (!DJCi500.FxD1Active[0] && !DJCi500.FxD2Active[0]){
+        midi.sendShortMsg(0x90, 0x14, 0x0);
+    }
+
 };
 DJCi500.fx2D2Callback = function (value, group, control) {
     DJCi500.FxD2Active[1] = value;
+
+    //LED
+    if (DJCi500.FxD1Active[1] && DJCi500.FxD2Active[1])
+    {
+        midi.sendShortMsg(0x90, 0x15, 0x7F);
+    }
+    else if (!DJCi500.FxD1Active[1] && !DJCi500.FxD2Active[1]){
+        midi.sendShortMsg(0x90, 0x15, 0x0);
+    }
 };
 DJCi500.fx3D2Callback = function (value, group, control) {
     DJCi500.FxD2Active[2] = value;
+
+    //LED
+    if (DJCi500.FxD1Active[2] && DJCi500.FxD2Active[2])
+    {
+        midi.sendShortMsg(0x90, 0x16, 0x7F);
+    }
+    else if (!DJCi500.FxD1Active[2] && !DJCi500.FxD2Active[2]){
+        midi.sendShortMsg(0x90, 0x16, 0x0);
+    }
 };
 DJCi500.fx4Callback = function (value, group, control) {
     //DJCi500.FxActive[0] = value;
@@ -270,43 +342,76 @@ DJCi500.filterKnob2 = function (channel, control, value, status, group) {
 DJCi500.Fx1Key = function (channel, control, value, status, group) {
 
     if (value == 0x7F){
-        if ((DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 1))
+        if (DJCi500.FxDeckSel == 0) {
+            //XOR
+            if ((DJCi500.FxD1Active[0] && !DJCi500.FxD2Active[0]) || (!DJCi500.FxD1Active[0] && DJCi500.FxD2Active[0])) {
+                engine.setValue("[EffectRack1_EffectUnit1_Effect1]", "enabled", 1);
+                engine.setValue("[EffectRack1_EffectUnit2_Effect1]", "enabled", 1);
+            }
+            else {
+                script.toggleControl("[EffectRack1_EffectUnit1_Effect1]", "enabled");
+                script.toggleControl("[EffectRack1_EffectUnit2_Effect1]", "enabled");
+            }
+        }
+        else if (DJCi500.FxDeckSel == 1)
         {
             script.toggleControl("[EffectRack1_EffectUnit1_Effect1]", "enabled");
         }
-        if ((DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 2))
+        else if (DJCi500.FxDeckSel == 2)
         {
             script.toggleControl("[EffectRack1_EffectUnit2_Effect1]", "enabled");
         }
     }
 
-}
+};
 DJCi500.Fx2Key = function (channel, control, value, status, group) {
 
     if (value == 0x7F){
-        if ((DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 1))
+        if (DJCi500.FxDeckSel == 0) {
+            //XOR
+            if ((DJCi500.FxD1Active[1] && !DJCi500.FxD2Active[1]) || (!DJCi500.FxD1Active[1] && DJCi500.FxD2Active[1])) {
+                engine.setValue("[EffectRack1_EffectUnit1_Effect2]", "enabled", 1);
+                engine.setValue("[EffectRack1_EffectUnit2_Effect2]", "enabled", 1);
+            }
+            else {
+                script.toggleControl("[EffectRack1_EffectUnit1_Effect2]", "enabled");
+                script.toggleControl("[EffectRack1_EffectUnit2_Effect2]", "enabled");
+            }
+        }
+        else if (DJCi500.FxDeckSel == 1)
         {
             script.toggleControl("[EffectRack1_EffectUnit1_Effect2]", "enabled");
         }
-        if ((DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 2))
+        else if (DJCi500.FxDeckSel == 2)
         {
             script.toggleControl("[EffectRack1_EffectUnit2_Effect2]", "enabled");
         }
     }
-}
+};
 DJCi500.Fx3Key = function (channel, control, value, status, group) {
 
     if (value == 0x7F){
-        if ((DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 1))
+        if (DJCi500.FxDeckSel == 0) {
+            //XOR
+            if ((DJCi500.FxD1Active[2] && !DJCi500.FxD2Active[2]) || (!DJCi500.FxD1Active[2] && DJCi500.FxD2Active[2])) {
+                engine.setValue("[EffectRack1_EffectUnit1_Effect3]", "enabled", 1);
+                engine.setValue("[EffectRack1_EffectUnit2_Effect3]", "enabled", 1);
+            }
+            else {
+                script.toggleControl("[EffectRack1_EffectUnit1_Effect3]", "enabled");
+                script.toggleControl("[EffectRack1_EffectUnit2_Effect3]", "enabled");
+            }
+        }
+        else if (DJCi500.FxDeckSel == 1)
         {
             script.toggleControl("[EffectRack1_EffectUnit1_Effect3]", "enabled");
         }
-        if ((DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 2))
+        else if (DJCi500.FxDeckSel == 2)
         {
             script.toggleControl("[EffectRack1_EffectUnit2_Effect3]", "enabled");
         }
     }
-}
+};
 ////SHIFT
 DJCi500.ShiftFx1Key = function (channel, control, value, status, group) {
 
@@ -314,21 +419,21 @@ DJCi500.ShiftFx1Key = function (channel, control, value, status, group) {
         engine.setValue("[EffectRack1_EffectUnit1_Effect1]", "enabled", 0);
         engine.setValue("[EffectRack1_EffectUnit2_Effect1]", "enabled", 0);
     }
-}
+};
 DJCi500.ShiftFx2Key = function (channel, control, value, status, group) {
 
     if (value == 0x7F){
         engine.setValue("[EffectRack1_EffectUnit1_Effect2]", "enabled", 0);
         engine.setValue("[EffectRack1_EffectUnit2_Effect2]", "enabled", 0);
     }
-}
+};
 DJCi500.ShiftFx3Key = function (channel, control, value, status, group) {
 
     if (value == 0x7F){
         engine.setValue("[EffectRack1_EffectUnit1_Effect3]", "enabled", 0);
         engine.setValue("[EffectRack1_EffectUnit2_Effect3]", "enabled", 0);
     }
-}
+};
 ///Deck Select - FX4
 DJCi500.Fx4Key = function (channel, control, value, status, group) {
 
@@ -338,20 +443,143 @@ DJCi500.Fx4Key = function (channel, control, value, status, group) {
         {
             DJCi500.FxDeckSel = 0;
         }
+
+        //LED
+        if (DJCi500.FxDeckSel == 0)
+        {
+            midi.sendShortMsg(0x90, 0x17, 0x0);
+        }
+        else if (DJCi500.FxDeckSel == 1){
+            midi.sendShortMsg(0x90, 0x17, 0x7F);
+        }
     }
-}
+};
 DJCi500.ShiftFx4Key = function (channel, control, value, status, group) {
 
     if (value == 0x7F){
         DJCi500.FxDeckSel = 0;
+
+        //LED
+        midi.sendShortMsg(0x90, 0x17, 0x0);
     }
-}
+};
+//Led
+DJCi500.blinkFxLed = function () {
 
+    DJCi500.blinkFxLedStatus = !DJCi500.blinkFxLedStatus;
 
+    //FX1
+    //XOR
+    if ((DJCi500.FxD1Active[0] && !DJCi500.FxD2Active[0]) || (!DJCi500.FxD1Active[0] && DJCi500.FxD2Active[0])) {
+        if (DJCi500.blinkFxLedStatus) {
+            midi.sendShortMsg(0x90, 0x14, 0x7F);
+        }
+        else {
+            midi.sendShortMsg(0x90, 0x14, 0x0);
+        }
+    }
+    //FX2
+    //XOR
+    if ((DJCi500.FxD1Active[1] && !DJCi500.FxD2Active[1]) || (!DJCi500.FxD1Active[1] && DJCi500.FxD2Active[1])) {
+        if (DJCi500.blinkFxLedStatus) {
+            midi.sendShortMsg(0x90, 0x15, 0x7F);
+        }
+        else {
+            midi.sendShortMsg(0x90, 0x15, 0x0);
+        }
+    }
+    //FX3
+    //XOR
+    if ((DJCi500.FxD1Active[2] && !DJCi500.FxD2Active[2]) || (!DJCi500.FxD1Active[2] && DJCi500.FxD2Active[2])) {
+        if (DJCi500.blinkFxLedStatus) {
+            midi.sendShortMsg(0x90, 0x16, 0x7F);
+        }
+        else {
+            midi.sendShortMsg(0x90, 0x16, 0x0);
+        }
+    }
+    //FX4
+    if (DJCi500.FxDeckSel == 2) {
+        if (DJCi500.blinkFxLedStatus) {
+            midi.sendShortMsg(0x90, 0x17, 0x7F);
+        }
+        else {
+            midi.sendShortMsg(0x90, 0x17, 0x0);
+        }
+    }
+};
+///Pad 7
+DJCi500.pitchUpTone = function (channel, control, value, status, group) {
+    if (value == 0x7F){
+        engine.setValue(group, "pitch_up", 1);
+        engine.setValue(group, "pitch_up", 1);
+    }
+};
+DJCi500.pitchDownTone = function (channel, control, value, status, group) {
+    if (value == 0x7F){
+        engine.setValue(group, "pitch_down", 1);
+        engine.setValue(group, "pitch_down", 1);
+    }
+};
+
+DJCi500.pitchSliderIncrease = function (channel, control, value, status, group) {
+
+    if (value == 0x7F){
+        var deck = 0;
+        if (group == "[Channel1]") {
+            deck = 0;
+        }
+        else if (group == "[Channel2]") {
+            deck = 1;
+        }
+
+        DJCi500.pitchRangesId[deck] = DJCi500.pitchRangesId[deck] + 1;
+        if (DJCi500.pitchRangesId[deck] > 2)
+        {
+            DJCi500.pitchRangesId[deck] = 2;
+        }
+        engine.setValue(group, "rateRange", DJCi500.pitchRanges[DJCi500.pitchRangesId[deck]]);
+    }
+};
+DJCi500.pitchSliderDecrease = function (channel, control, value, status, group) {
+
+    if (value == 0x7F){
+        var deck = 0;
+        if (group == "[Channel1]") {
+            deck = 0;
+        }
+        else if (group == "[Channel2]") {
+            deck = 1;
+        }
+
+        DJCi500.pitchRangesId[deck] = DJCi500.pitchRangesId[deck] - 1;
+        if (DJCi500.pitchRangesId[deck] < 0)
+        {
+            DJCi500.pitchRangesId[deck] = 0;
+        }
+        engine.setValue(group, "rateRange", DJCi500.pitchRanges[DJCi500.pitchRangesId[deck]]);
+    }
+};
+DJCi500.pitchSliderReset = function (channel, control, value, status, group) {
+    if (value == 0x7F){
+        var deck = 0;
+        if (group == "[Channel1]") {
+            deck = 0;
+        }
+        else if (group == "[Channel2]") {
+            deck = 1;
+        }
+        DJCi500.pitchRangesId[deck] = 0;
+        engine.setValue(group, "rateRange", DJCi500.pitchRanges[DJCi500.pitchRangesId[deck]]);
+    }
+};
 
 /////
 
 DJCi500.shutdown = function() {
+
+    //cleanup
+    engine.stopTimer(DJCi500.FxLedtimer);
 
 	midi.sendShortMsg(0xB0, 0x7F, 0x7E);
 };

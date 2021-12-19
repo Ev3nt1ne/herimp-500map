@@ -1,6 +1,7 @@
 
 
-1:
+done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not when only one is active. I need to make all active and then start flipping.
+                (all active first since if I want to disable everything there is still shift+key)
             B: LED are only on deck 1
             1: fx 1-3:  enabled both: on
                         enabled on only 1 or 2: blinking
@@ -47,3 +48,5 @@
 17: pad 7:
         -1tone -1 semitone + 1 semitone + 1tone
         -2xtempo -1xtempo +1x tempo +2x tempo (regarding pitch slider control unit measure)
+
+18: loop functions (shift etc) look main dj software

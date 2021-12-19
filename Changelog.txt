@@ -1,5 +1,10 @@
 
 4:
+	Added Pad 7 bottom functions (slider resolution, shift to reset). Still
+		missing leds, still missing left and right bottom buttons.
+	Added Pad 7 top functions for key changes. Still missing LEDs
+	Added Fx4 function for deck select, also filterknob behavior depend on it
+	Fixed LED
 	Modified Fx and FilterKnob: now Fx4 selects the deck for both buttons and
 		knobs. Shift + button resets everything. Fixed Fx only connected to
 		deck1. Led still missing
