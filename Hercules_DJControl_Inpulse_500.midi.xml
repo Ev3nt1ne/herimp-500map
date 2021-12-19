@@ -1819,96 +1819,104 @@
 		<!-- FX-->
 		<!---->
 		<control>
-			<group>[EffectRack1_EffectUnit1_Effect1]</group>
-			<key>enabled</key>
+			<group>[Channel]</group>
+			<key>DJCi500.Fx1Key</key>
 			<description>FX1-Deck1</description>
 			<status>0x90</status>
 			<midino>0x14</midino>
 			<options>
 				<!-- <script-binding /> -->
-				<normal />
-			</options>
-		</control>
-		<control>
-			<group>[EffectRack1_EffectUnit2_Effect1]</group>
-			<key>enabled</key>
-			<description>FX1-Deck2</description>
-			<status>0x90</status>
-			<midino>0x14</midino>
-			<options>
-				<!-- <script-binding /> -->
-				<normal />
+				<script-binding />
 			</options>
 		</control>
 
 		<control>
-			<group>[EffectRack1_EffectUnit1_Effect2]</group>
-			<key>enabled</key>
+			<group>[Channel]</group>
+			<key>DJCi500.Fx2Key</key>
 			<description>FX2-Deck1</description>
 			<status>0x90</status>
 			<midino>0x15</midino>
 			<options>
 				<!-- <script-binding /> -->
-				<normal />
-			</options>
-		</control>
-		<control>
-			<group>[EffectRack1_EffectUnit2_Effect2]</group>
-			<key>enabled</key>
-			<description>FX2-Deck2</description>
-			<status>0x90</status>
-			<midino>0x15</midino>
-			<options>
-				<!-- <script-binding /> -->
-				<normal />
+				<script-binding />
 			</options>
 		</control>
 
 		<control>
-			<group>[EffectRack1_EffectUnit1_Effect3]</group>
-			<key>enabled</key>
+			<group>[Channel]</group>
+			<key>DJCi500.Fx3Key</key>
 			<description>FX3-Deck1</description>
 			<status>0x90</status>
 			<midino>0x16</midino>
 			<options>
 				<!-- <script-binding /> -->
-				<normal />
-			</options>
-		</control>
-		<control>
-			<group>[EffectRack1_EffectUnit2_Effect3]</group>
-			<key>enabled</key>
-			<description>FX3-Deck2</description>
-			<status>0x90</status>
-			<midino>0x16</midino>
-			<options>
-				<!-- <script-binding /> -->
-				<normal />
+				<script-binding />
 			</options>
 		</control>
 
 		<control>
-			<group>[QuickEffectRack1_[Channel1]_Effect1]</group>
-		    <key>enabled</key>
+			<group>[Channel]</group>
+			<key>DJCi500.Fx4Key</key>
 			<description>FX active/disable-Deck 1</description>
 			<status>0x90</status>
 			<midino>0x17</midino>
 			<options>
 				<!-- <script-binding /> -->
-				<normal />
+				<script-binding />
 			</options>
 		</control>
+
+		<!--SHIFT FX-->
+		<!---->
+
 		<control>
-			<group>[QuickEffectRack1_[Channel2]_Effect1]</group>
-		    <key>enabled</key>
-			<description>FX active/disable-Deck 2</description>
-			<status>0x90</status>
+			<group>[Channel]</group>
+			<key>DJCi500.ShiftFx1Key</key>
+			<description>Shift FX1-Deck1</description>
+			<status>0x93</status>
+			<midino>0x14</midino>
+			<options>
+				<!-- <script-binding /> -->
+				<script-binding />
+			</options>
+		</control>
+
+		<control>
+			<group>[Channel]</group>
+			<key>DJCi500.ShiftFx2Key</key>
+			<description>Shift FX2-Deck1</description>
+			<status>0x93</status>
+			<midino>0x15</midino>
+			<options>
+				<!-- <script-binding /> -->
+				<script-binding />
+			</options>
+		</control>
+
+		<control>
+			<group>[Channel]</group>
+			<key>DJCi500.ShiftFx3Key</key>
+			<description>Shift FX3-Deck1</description>
+			<status>0x93</status>
+			<midino>0x16</midino>
+			<options>
+				<!-- <script-binding /> -->
+				<script-binding />
+			</options>
+		</control>
+
+		<control>
+			<group>[Channel]</group>
+			<key>DJCi500.ShiftFx4Key</key>
+			<description>Shift FX4-Deck1</description>
+			<status>0x93</status>
 			<midino>0x17</midino>
 			<options>
 				<!-- <script-binding /> -->
-				<normal />
+				<script-binding />
 			</options>
 		</control>
+
 
 
 	<!-- Last Control - close -->

@@ -1,15 +1,17 @@
 
 
-1: managed to connect the button to the mixxx, but:
-  A: the knob is not controlling the overall fx (red knob in mixxx)
-    the red knob: EffectRack1_EffectUnit1/2, mix -  Parameter: 0.5 Direction FROM_AND_TO_WIDGET emit: PRESS
-    also there is presenta super knob (green) EffectRack1_EffectUnit1/2, super1
-        but i think it is better the dry wet one
-    Steps:
-        1: test the normal behavior
-            A: I connect only deck1 to callback
+1:
             B: LED are only on deck 1
-        2: improve on that
+            1: fx 1-3:  enabled both: on
+                        enabled on only 1 or 2: blinking
+                        disabled all: off
+                shift press = reset the state to 0 - off
+               fx 4: press: change activation based on state: Deck 1 only (on), deck 2 only (blinking), off (off)
+               shift press = reset the state to 0 - off
+                        What?
+                            change everything in the fxplace: buttons and knobs
+                            il punto è: voglio che le knob funzionino solo in base allo stato degli fx o voglio controllarle anche con fx4?
+                            voglio anche con fx4
 
 2: obtain the beat align lights from wireshark
     jog lights up at the end of the song (I can get the signal)
@@ -20,8 +22,6 @@
     need to understand where they go in mixxx
 
 6: the browser knob: don't make it flash as default but make it change color based on the point of the song execution (violet to red when the song is ending)
-
-7: fx lights are messed up
 
 8: when I press shift a lot of lights disappear (but not the hot cue ones)
     it can be cool to exploit this behavior
@@ -39,3 +39,11 @@
     (where N and X are the respective Deck and hotcue whose information is being accessed) as an RGB color code
 
 15: Reset tempo (cannot do with shift + sync since it is already taken)
+        NO:I can put shift+sync = reset tempo. then put all key stuff on a pad.
+            because i should not need to reset tempo so brutally
+
+16: look at other consoles for pad functionalities
+
+17: pad 7:
+        -1tone -1 semitone + 1 semitone + 1tone
+        -2xtempo -1xtempo +1x tempo +2x tempo (regarding pitch slider control unit measure)

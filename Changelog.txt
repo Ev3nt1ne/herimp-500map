@@ -1,4 +1,9 @@
 
+4:
+	Modified Fx and FilterKnob: now Fx4 selects the deck for both buttons and
+		knobs. Shift + button resets everything. Fixed Fx only connected to
+		deck1. Led still missing
+
 3:
 	Shift + Sync: changed to "match key" since it was redundant with long press
 		(still missing reset tempo)
@@ -9,8 +14,8 @@
 		but I decided that the wet/dry is better. Tell me if you have different
 		ideas
 	Fixed Quantize button: now properly activate quatize, instead shift+quantize
-		activate the keylock
-		
+		activates the keylock
+
 2:
 	Fixed Fx Buttons: Now each fx control the activation of both deck1 and Deck2
 		lights are not properly setup yet, knobs not yet working
