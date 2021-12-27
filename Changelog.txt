@@ -1,3 +1,8 @@
+5:
+	Fixed a bug: Shift + scratchWheel. It was not a function.
+	Added slowed pause function: can be activated separated per deck with
+		shift+vinyl.
+
 
 4:
 	Added Pad 7 bottom functions (slider resolution, shift to reset). Still

@@ -44,12 +44,13 @@
 			<!--Play-->
 			<control>
 				<group>[Channel1]</group>
-				<key>play</key>
+				<key>DJCi500.play</key>
 				<description>Play button</description>
 				<status>0x91</status>
 				<midino>0x07</midino>
 				<options>
-					<normal />
+					<!--<normal />-->
+					<script-binding />
 				</options>
 			</control>
 			<!--CUE-->
@@ -142,6 +143,18 @@
 				</options>
 			</control>
 
+			<!--SHIFT + Vinyl button-->
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.slowPauseSet</key>
+				<description>Shift + Vinyl Deck A</description>
+				<status>0x94</status>
+				<midino>0x03</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+
 			<!--Jog Touch A-->
 			<control>
 				<group>[Channel1]</group>
@@ -192,12 +205,12 @@
 			<!--Play-->
 			<control>
 				<group>[Channel2]</group>
-				<key>play</key>
+				<key>DJCi500.play</key>
 				<description>Play button</description>
 				<status>0x92</status>
 				<midino>0x07</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<!--CUE-->
@@ -277,6 +290,7 @@
 					<normal />
 				</options>
 			</control>
+
 			<!--Vinyl button-->
 			<control>
 				<group>[Master]</group>
@@ -288,6 +302,19 @@
 					<script-binding />
 				</options>
 			</control>
+
+			<!--SHIFT + Vinyl button-->
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.slowPauseSet</key>
+				<description>Shift + Vinyl Deck B</description>
+				<status>0x95</status>
+				<midino>0x03</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+
 			<!--Jog Touch B -->
 			<control>
 				<group>[Channel2]</group>
@@ -1791,6 +1818,7 @@
 
 			<!-- CC's MIDI Channel 5 (0xB4  Deck B - SHIFT mode)-->
 			<!--Jog wheel-->
+			<!--
 			<control>
 				<group>[Channel1]</group>
 				<key>DJCi500.scratchWheelShift </key>
@@ -1801,10 +1829,11 @@
 					<script-binding />
 				</options>
 			</control>
-
+-->
 
 			<!-- CC's MIDI Channel 6 (0xB5  Deck B - SHIFT mode)-->
 			<!--Jog wheel-->
+			<!--
 			<control>
 				<group>[Channel2]</group>
 				<key>DJCi500.scratchWheelShift </key>
@@ -1815,7 +1844,7 @@
 					<script-binding />
 				</options>
 			</control>
-
+-->
 		<!-- FX-->
 		<!---->
 		<control>

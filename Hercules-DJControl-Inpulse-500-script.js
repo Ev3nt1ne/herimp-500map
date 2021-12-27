@@ -53,6 +53,7 @@ DJCi500.FxD2Active = [0, 0, 0]; //Here I decided to put only 3 effects
 DJCi500.FxDeckSel = 0; // state variable for fx4 to decide the deck
 DJCi500.pitchRanges = [0.08, 0.32, 1]; //select pitch range
 DJCi500.pitchRangesId = [0, 0]; //id of the array, one for each deck
+DJCi500.slowPauseSetState = [0, 0];
 
 DJCi500.vuMeterUpdateMaster = function(value, _group, _control) {
     value = (value * 122) + 5;
@@ -573,6 +574,36 @@ DJCi500.pitchSliderReset = function (channel, control, value, status, group) {
         engine.setValue(group, "rateRange", DJCi500.pitchRanges[DJCi500.pitchRangesId[deck]]);
     }
 };
+
+DJCi500.play = function (channel, control, value, status, group) {
+
+    if (value == 0x7F){
+        if (engine.getValue(group, "play_indicator")){
+            var deck = parseInt(group.substring(8, 9)) - 1;
+            if (DJCi500.slowPauseSetState[deck]){
+                engine.brake((deck+1),
+                    1,//((status & 0xF0) !== 0x80 && value > 0),
+                    54);
+            }
+            else {
+                engine.setValue(group, "play", 0);
+            }
+        }
+        else{
+            engine.setValue(group, "play", 1);
+        }
+    }
+};
+
+DJCi500.slowPauseSet = function (channel, control, value, status, group) {
+
+    if (value == 0x7F){
+        var deck = parseInt(group.substring(8, 9)) - 1;
+        DJCi500.slowPauseSetState[deck] = !DJCi500.slowPauseSetState[deck];
+    }
+
+};
+
 
 /////
 
