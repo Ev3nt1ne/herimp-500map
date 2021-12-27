@@ -50,3 +50,13 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
         -2xtempo -1xtempo +1x tempo +2x tempo (regarding pitch slider control unit measure)
 
 18: loop functions (shift etc) look main dj software
+
+19: shift+keychange = reset key. led pad 7
+
+20: to fix tempo the jog are really bad sensitivity. Fix it (succede solo se la canzone è in stop, probabilmente è più un problema di mixxx che del mapping)
+
+21: assistant = AutoDJ
+
+22: shift+knob per scalare di 10 in 10
+
+23: fix errors in --developer mode

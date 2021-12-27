@@ -508,6 +508,73 @@ DJCi500.blinkFxLed = function () {
             midi.sendShortMsg(0x90, 0x17, 0x0);
         }
     }
+
+    //Tempo:
+    var bpm1 = engine.getValue("[Channel1]", "bpm");
+    var bpm2 = engine.getValue("[Channel2]", "bpm");
+    var diff = bpm1 - bpm2;
+
+
+    if ( diff < -0.25)
+    {
+        //Deck1
+        midi.sendShortMsg(0x91, 0x1E, 0x0);
+        midi.sendShortMsg(0x91, 0x1F, 0x7F);
+        //Deck2
+        midi.sendShortMsg(0x92, 0x1F, 0x0);
+        midi.sendShortMsg(0x92, 0x1E, 0x7F);
+    }
+    else if ( diff > 0.25)
+    {
+        //Deck1
+        midi.sendShortMsg(0x91, 0x1F, 0x0);
+        midi.sendShortMsg(0x91, 0x1E, 0x7F);
+        //Deck2
+        midi.sendShortMsg(0x92, 0x1E, 0x0);
+        midi.sendShortMsg(0x92, 0x1F, 0x7F);
+    }
+    else {
+        //Deck1
+        midi.sendShortMsg(0x91, 0x1E, 0x0);
+        midi.sendShortMsg(0x91, 0x1F, 0x0);
+        //Deck2
+        midi.sendShortMsg(0x92, 0x1E, 0x0);
+        midi.sendShortMsg(0x92, 0x1F, 0x0);
+    }
+
+    var beat1 = engine.getValue("[Channel1]", "beat_distance");
+    var beat2 = engine.getValue("[Channel2]", "beat_distance");
+    diff = beat1 - beat2;
+    if (diff < 0){
+        diff = 1+diff;
+    }
+    if ((diff < 0.02) || (diff > 1-0.02))
+    {
+        //Deck1
+        midi.sendShortMsg(0x91, 0x1C, 0x0);
+        midi.sendShortMsg(0x91, 0x1D, 0x0);
+        //Deck2
+        midi.sendShortMsg(0x92, 0x1C, 0x0);
+        midi.sendShortMsg(0x92, 0x1D, 0x0);
+    }
+    else if ( diff < 0.5)
+    {
+        //Deck1
+        midi.sendShortMsg(0x91, 0x1C, 0x0);
+        midi.sendShortMsg(0x91, 0x1D, 0x7F);
+        //Deck2
+        midi.sendShortMsg(0x92, 0x1D, 0x0);
+        midi.sendShortMsg(0x92, 0x1C, 0x7F);
+    }
+    else {
+        //Deck1
+        midi.sendShortMsg(0x91, 0x1D, 0x0);
+        midi.sendShortMsg(0x91, 0x1C, 0x7F);
+        //Deck2
+        midi.sendShortMsg(0x92, 0x1C, 0x0);
+        midi.sendShortMsg(0x92, 0x1D, 0x7F);
+    }
+
 };
 ///Pad 7
 DJCi500.pitchUpTone = function (channel, control, value, status, group) {
@@ -578,7 +645,7 @@ DJCi500.pitchSliderReset = function (channel, control, value, status, group) {
 DJCi500.play = function (channel, control, value, status, group) {
 
     if (value == 0x7F){
-        if (engine.getValue(group, "play_indicator")){
+        if (engine.getValue(group, "play_latched")){ //play_indicator
             var deck = parseInt(group.substring(8, 9)) - 1;
             if (DJCi500.slowPauseSetState[deck]){
                 engine.brake((deck+1),

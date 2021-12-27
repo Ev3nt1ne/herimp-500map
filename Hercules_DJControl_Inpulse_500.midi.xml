@@ -2421,7 +2421,7 @@
 				<on>0x7f</on>
 				<off>0x0</off>
 			</output>
-			<!-- Effect Unit On-->
+			<!-- Effect Unit On
 			<output>
 				<group>[EffectRack1_EffectUnit1_Effect3]</group>
 				<key>enabled</key>
@@ -2444,7 +2444,8 @@
 				<on>0x7f</on>
 				<off>0x0</off>
 			</output>
-			<!-- LED Beat Align (Track end warning)-->
+			-->
+			<!-- LED Beat Align (Track end warning)
 			<output>
 				<group>[Channel1]</group>
 				<key>end_of_track</key>
@@ -2489,6 +2490,7 @@
 				<on>0x7f</on>
 				<off>0x0</off>
 			</output>
+			-->
 			<!--LED HOT CUE (Normal Mode)-->
 			<output>
 				<group>[Channel1]</group>
