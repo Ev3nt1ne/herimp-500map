@@ -54,6 +54,35 @@ DJCi500.FxDeckSel = 0; // state variable for fx4 to decide the deck
 DJCi500.pitchRanges = [0.08, 0.32, 1]; //select pitch range
 DJCi500.pitchRangesId = [0, 0]; //id of the array, one for each deck
 DJCi500.slowPauseSetState = [0, 0];
+///////////////////////////////////////////////////////////////
+//                          SLICER                           //
+///////////////////////////////////////////////////////////////
+//PioneerDDJSX.selectedSlicerQuantizeParam = [1, 1, 1, 1];
+//PioneerDDJSX.selectedSlicerQuantization = [1 / 4, 1 / 4, 1 / 4, 1 / 4];
+//PioneerDDJSX.slicerQuantizations = [1 / 8, 1 / 4, 1 / 2, 1];
+//PioneerDDJSX.selectedSlicerDomainParam = [0, 0, 0, 0];
+DJCi500.selectedSlicerDomain = [8, 8, 8, 8]; //length of the Slicer domain
+//PioneerDDJSX.slicerDomains = [8, 16, 32, 64];
+
+// slicer storage:
+DJCi500.slicerBeatsPassed = [0, 0, 0, 0];
+DJCi500.slicerPreviousBeatsPassed = [0, 0, 0, 0];
+//DJCi500.slicerJumping = [false, false, false, false];
+DJCi500.slicerJumping = [0, 0, 0, 0];
+DJCi500.slicerActive = [false, false, false, false];
+DJCi500.slicerAlreadyJumped = [false, false, false, false];
+DJCi500.slicerButton = [0, 0, 0, 0];
+DJCi500.slicerModes = {
+    'contSlice': 0,
+    'loopSlice': 1
+};
+DJCi500.activeSlicerMode = [
+    DJCi500.slicerModes.contSlice,
+    DJCi500.slicerModes.contSlice,
+    DJCi500.slicerModes.contSlice,
+    DJCi500.slicerModes.contSlice
+];
+///////////////////////
 
 DJCi500.vuMeterUpdateMaster = function(value, _group, _control) {
     value = (value * 122) + 5;
@@ -109,6 +138,10 @@ DJCi500.init = function() {
     var fx2D2Connection = engine.makeConnection('[EffectRack1_EffectUnit2_Effect2]', 'enabled', DJCi500.fx2D2Callback);
     var fx3D2Connection = engine.makeConnection('[EffectRack1_EffectUnit2_Effect3]', 'enabled', DJCi500.fx3D2Callback);
     //var fx4Connection = engine.makeConnection('[EffectRack1_EffectUnit1_Effect4]', 'enabled', DJCi500.fx4Callback);
+    var slicerBeatConnection = engine.makeConnection('[Channel1]', 'beat_active', DJCi500.slicerBeatActive);
+    //var controlsToFunctions = {'beat_active': 'DJCi500.slicerBeatActive'};
+    //script.bindConnections('[Channel1]', controlsToFunctions, true);
+
 
 	// Ask the controller to send all current knob/slider values over MIDI, which will update
     // the corresponding GUI controls in MIXXX.
@@ -510,10 +543,18 @@ DJCi500.blinkFxLed = function () {
     }
 
     //Tempo:
-    var bpm1 = engine.getValue("[Channel1]", "bpm");
-    var bpm2 = engine.getValue("[Channel2]", "bpm");
-    var diff = bpm1 - bpm2;
+    var tempo1 = engine.getValue("[Channel1]", "bpm");
+    var tempo2 = engine.getValue("[Channel2]", "bpm");
+    var diff = tempo1 - tempo2;
 
+    //Check double tempo:
+    var doubleTempo = 0;
+    if (diff > 0){
+        if ((tempo1 / tempo2) > 1.5){doubleTempo = 1; diff = tempo1/2 - tempo2;}
+    }
+    else{
+        if ((tempo2 / tempo1) > 1.5){doubleTempo = 1; diff = tempo1 - tempo2/2;}
+    }
 
     if ( diff < -0.25)
     {
@@ -523,6 +564,14 @@ DJCi500.blinkFxLed = function () {
         //Deck2
         midi.sendShortMsg(0x92, 0x1F, 0x0);
         midi.sendShortMsg(0x92, 0x1E, 0x7F);
+
+        //clear beatalign leds
+        //Deck1
+        midi.sendShortMsg(0x91, 0x1C, 0x0);
+        midi.sendShortMsg(0x91, 0x1D, 0x0);
+        //Deck2
+        midi.sendShortMsg(0x92, 0x1C, 0x0);
+        midi.sendShortMsg(0x92, 0x1D, 0x0);
     }
     else if ( diff > 0.25)
     {
@@ -532,6 +581,14 @@ DJCi500.blinkFxLed = function () {
         //Deck2
         midi.sendShortMsg(0x92, 0x1E, 0x0);
         midi.sendShortMsg(0x92, 0x1F, 0x7F);
+
+        //clear beatalign leds
+        //Deck1
+        midi.sendShortMsg(0x91, 0x1C, 0x0);
+        midi.sendShortMsg(0x91, 0x1D, 0x0);
+        //Deck2
+        midi.sendShortMsg(0x92, 0x1C, 0x0);
+        midi.sendShortMsg(0x92, 0x1D, 0x0);
     }
     else {
         //Deck1
@@ -540,40 +597,68 @@ DJCi500.blinkFxLed = function () {
         //Deck2
         midi.sendShortMsg(0x92, 0x1E, 0x0);
         midi.sendShortMsg(0x92, 0x1F, 0x0);
-    }
 
-    var beat1 = engine.getValue("[Channel1]", "beat_distance");
-    var beat2 = engine.getValue("[Channel2]", "beat_distance");
-    diff = beat1 - beat2;
-    if (diff < 0){
-        diff = 1+diff;
-    }
-    if ((diff < 0.02) || (diff > 1-0.02))
-    {
-        //Deck1
-        midi.sendShortMsg(0x91, 0x1C, 0x0);
-        midi.sendShortMsg(0x91, 0x1D, 0x0);
-        //Deck2
-        midi.sendShortMsg(0x92, 0x1C, 0x0);
-        midi.sendShortMsg(0x92, 0x1D, 0x0);
-    }
-    else if ( diff < 0.5)
-    {
-        //Deck1
-        midi.sendShortMsg(0x91, 0x1C, 0x0);
-        midi.sendShortMsg(0x91, 0x1D, 0x7F);
-        //Deck2
-        midi.sendShortMsg(0x92, 0x1D, 0x0);
-        midi.sendShortMsg(0x92, 0x1C, 0x7F);
-    }
-    else {
-        //Deck1
-        midi.sendShortMsg(0x91, 0x1D, 0x0);
-        midi.sendShortMsg(0x91, 0x1C, 0x7F);
-        //Deck2
-        midi.sendShortMsg(0x92, 0x1C, 0x0);
-        midi.sendShortMsg(0x92, 0x1D, 0x7F);
-    }
+        //Do beat alignement only if the tracks are already on Tempo
+        // and only if they are playing
+        if ( (engine.getValue("[Channel1]", "play_latched")) && (engine.getValue("[Channel2]", "play_latched")) ){
+
+            var beat1 = engine.getValue("[Channel1]", "beat_distance");
+            var beat2 = engine.getValue("[Channel2]", "beat_distance");
+            if (doubleTempo){
+                if (tempo1 > tempo2){
+                    if (beat2 > 0.5){
+                        beat2 -= 0.5;
+                    }
+                    beat2 *= 2;
+                }
+                else{ //tempo2 >(=) tempo1
+                    if (beat1 > 0.5){
+                        beat1 -= 0.5;
+                    }
+                    beat1 *= 2;
+                }
+            }
+            diff = beat1 - beat2;
+            if (diff < 0){
+                diff = 1+diff;
+            }
+            if ((diff < 0.02) || (diff > 1-0.02))
+            {
+                //Deck1
+                midi.sendShortMsg(0x91, 0x1C, 0x0);
+                midi.sendShortMsg(0x91, 0x1D, 0x0);
+                //Deck2
+                midi.sendShortMsg(0x92, 0x1C, 0x0);
+                midi.sendShortMsg(0x92, 0x1D, 0x0);
+            }
+            else if ( diff < 0.5)
+            {
+                //Deck1
+                midi.sendShortMsg(0x91, 0x1C, 0x0);
+                midi.sendShortMsg(0x91, 0x1D, 0x7F);
+                //Deck2
+                midi.sendShortMsg(0x92, 0x1D, 0x0);
+                midi.sendShortMsg(0x92, 0x1C, 0x7F);
+            }
+            else {
+                //Deck1
+                midi.sendShortMsg(0x91, 0x1D, 0x0);
+                midi.sendShortMsg(0x91, 0x1C, 0x7F);
+                //Deck2
+                midi.sendShortMsg(0x92, 0x1C, 0x0);
+                midi.sendShortMsg(0x92, 0x1D, 0x7F);
+            }
+        }//if playing
+        else {
+            //Deck1
+            midi.sendShortMsg(0x91, 0x1C, 0x0);
+            midi.sendShortMsg(0x91, 0x1D, 0x0);
+            //Deck2
+            midi.sendShortMsg(0x92, 0x1C, 0x0);
+            midi.sendShortMsg(0x92, 0x1D, 0x0);
+        }
+    }//else tempo
+
 
 };
 ///Pad 7
@@ -671,6 +756,159 @@ DJCi500.slowPauseSet = function (channel, control, value, status, group) {
 
 };
 
+///////////////////////////////////////////////////////////////
+//                          SLICER                           //
+///////////////////////////////////////////////////////////////
+/*
+PioneerDDJSX.toggleSlicerMode = function(channel, control, value, status, group) {
+    var deck = PioneerDDJSX.channelGroups[group];
+    //SLICER
+    if (value) {
+        if (PioneerDDJSX.activePadMode[deck] === PioneerDDJSX.padModes.slicer &&
+            PioneerDDJSX.activeSlicerMode[deck] === PioneerDDJSX.slicerModes.contSlice) {
+            PioneerDDJSX.activeSlicerMode[deck] = PioneerDDJSX.slicerModes.loopSlice;
+            engine.setValue(group, "slip_enabled", true);
+        } else {
+            PioneerDDJSX.activeSlicerMode[deck] = PioneerDDJSX.slicerModes.contSlice;
+            engine.setValue(group, "slip_enabled", false);
+        }
+        PioneerDDJSX.activePadMode[deck] = PioneerDDJSX.padModes.slicer;
+        PioneerDDJSX.nonPadLedControl(group, PioneerDDJSX.nonPadLeds.slicerMode, value);
+    }
+};
+*/
+////
+//Slicer Mode:
+/*
+if (ctrl === PioneerDDJSX.nonPadLeds.parameterLeftSlicerMode || ctrl === PioneerDDJSX.nonPadLeds.parameterRightSlicerMode) {
+    // change parameter set:
+    if (ctrl === PioneerDDJSX.nonPadLeds.parameterLeftSlicerMode && PioneerDDJSX.selectedSlicerQuantizeParam[deck] > 0) {
+        PioneerDDJSX.selectedSlicerQuantizeParam[deck] -= 1;
+    } else if (ctrl === PioneerDDJSX.nonPadLeds.parameterRightSlicerMode && PioneerDDJSX.selectedSlicerQuantizeParam[deck] < 3) {
+        PioneerDDJSX.selectedSlicerQuantizeParam[deck] += 1;
+    }
+    PioneerDDJSX.selectedSlicerQuantization[deck] = PioneerDDJSX.slicerQuantizations[PioneerDDJSX.selectedSlicerQuantizeParam[deck]];
+}
+//Slicer Mode + SHIFT:
+if (ctrl === PioneerDDJSX.nonPadLeds.shiftParameterLeftSlicerMode || ctrl === PioneerDDJSX.nonPadLeds.shiftParameterRightSlicerMode) {
+    // change parameter set:
+    if (ctrl === PioneerDDJSX.nonPadLeds.shiftParameterLeftSlicerMode && PioneerDDJSX.selectedSlicerDomainParam[deck] > 0) {
+        PioneerDDJSX.selectedSlicerDomainParam[deck] -= 1;
+    } else if (ctrl === PioneerDDJSX.nonPadLeds.shiftParameterRightSlicerMode && PioneerDDJSX.selectedSlicerDomainParam[deck] < 3) {
+        PioneerDDJSX.selectedSlicerDomainParam[deck] += 1;
+    }
+    PioneerDDJSX.selectedSlicerDomain[deck] = PioneerDDJSX.slicerDomains[PioneerDDJSX.selectedSlicerDomainParam[deck]];
+}
+*/
+/////
+DJCi500.padSelect = function(channel, control, value, status, group) {
+    var deck = parseInt(group.substring(8, 9)) - 1;
+    if (control === 0x11){
+        DJCi500.activeSlicerMode[deck] = true;
+    }
+    else {
+        DJCi500.activeSlicerMode[deck] = false;
+    }
+
+};
+
+DJCi500.slicerButtons = function(channel, control, value, status, group) {
+    var index = control - 0x20,
+        deck = parseInt(group.substring(8, 9)) - 1,
+        domain = DJCi500.selectedSlicerDomain[deck],
+        beatsToJump = 0;
+/*
+    if (PioneerDDJSX.activeSlicerMode[deck] === PioneerDDJSX.slicerModes.loopSlice) {
+        PioneerDDJSX.padLedControl(group, PioneerDDJSX.ledGroups.slicer, index, false, !value);
+    } else {
+        PioneerDDJSX.padLedControl(group, PioneerDDJSX.ledGroups.slicer, index, false, value);
+    }
+*/
+    //DJCi500.slicerActive[deck] = value ? true : false;
+    DJCi500.slicerButton[deck] = index;
+
+    if (value) {
+        beatsToJump = (index * (domain / 8)) - ((DJCi500.slicerBeatsPassed[deck] % domain));
+        beatsToJump -= engine.getValue(group, "beat_distance");
+        /*if (index === 0 && beatsToJump === -domain) {
+            beatsToJump = 0;
+        }
+        if (DJCi500.slicerBeatsPassed[deck] >= Math.abs(beatsToJump) &&
+            DJCi500.slicerPreviousBeatsPassed[deck] !== DJCi500.slicerBeatsPassed[deck]) {
+            DJCi500.slicerPreviousBeatsPassed[deck] = DJCi500.slicerBeatsPassed[deck];
+            if (Math.abs(beatsToJump) > 0) { */
+                DJCi500.slicerJumping[deck] = 2;
+                engine.setValue(group, "slip_enabled", true);
+                engine.setValue(group, "beatjump", beatsToJump);
+            //}
+        //}
+    }
+/*
+    if (PioneerDDJSX.activeSlicerMode[deck] === PioneerDDJSX.slicerModes.contSlice) {
+        engine.setValue(group, "slip_enabled", value);
+        engine.setValue(group, "beatloop_size", PioneerDDJSX.selectedSlicerQuantization[deck]);
+        engine.setValue(group, "beatloop_activate", value);
+    }
+*/
+};
+//this below is connected to beat_active
+DJCi500.slicerBeatActive = function(value, group, control) {
+    // This slicer implementation will work for constant beatgrids only!
+    var deck = parseInt(group.substring(8, 9)) - 1;
+        bpm = engine.getValue(group, "file_bpm"),
+        playposition = engine.getValue(group, "playposition"),
+        duration = engine.getValue(group, "duration"),
+        slicerPosInSection = 0,
+        ledBeatState = true,
+        domain = DJCi500.selectedSlicerDomain[deck];
+
+    //this works.
+    if (engine.getValue(group, "beat_closest") === engine.getValue(group, "beat_next")) {
+        return;
+    }
+
+    DJCi500.slicerBeatsPassed[deck] = Math.floor((playposition * duration) * (bpm / 60.0));
+
+    if (DJCi500.slicerActive){
+        slicerPosInSection = Math.floor((DJCi500.slicerBeatsPassed[deck] % domain) / (domain / 8));
+        if (DJCi500.slicerJumping[deck]){
+            DJCi500.slicerJumping[deck] -= 1;
+            print("\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r");
+        }
+        else {
+            engine.setValue(group, "slip_enabled", false);
+        }
+
+        if (DJCi500.activeSlicerMode[deck] === DJCi500.slicerModes.loopSlice) {
+            ledBeatState = false;
+            if (((DJCi500.slicerBeatsPassed[deck] - 1) % domain) === (domain - 1) &&
+                !DJCi500.slicerAlreadyJumped[deck] &&
+                DJCi500.slicerPreviousBeatsPassed[deck] < DJCi500.slicerBeatsPassed[deck]) {
+                engine.setValue(group, "beatjump", -domain);
+                DJCi500.slicerAlreadyJumped[deck] = true;
+            } else {
+                DJCi500.slicerAlreadyJumped[deck] = false;
+            }
+        }
+        // PAD Led control:
+        for (var i = 0; i < 8; i++) {
+            if (DJCi500.slicerActive[deck]) {
+                if (DJCi500.slicerButton[deck] !== i) {
+                    active = (slicerPosInSection === i) ? 0x7F : 0x00;
+                    midi.sendShortMsg((0x96+deck), 0x20+i, active);
+                }
+            } else {
+                active = ((slicerPosInSection === i) ? ledBeatState : !ledBeatState) ? 0x7F : 0x00;
+                midi.sendShortMsg((0x96+deck), 0x20+i, active);
+            }
+        }
+    } else {
+        DJCi500.slicerAlreadyJumped[deck] = false;
+        DJCi500.slicerPreviousBeatsPassed[deck] = 0;
+    }
+
+};
+
 
 /////
 
@@ -678,6 +916,9 @@ DJCi500.shutdown = function() {
 
     //cleanup
     engine.stopTimer(DJCi500.FxLedtimer);
+
+    //var controlsToFunctions = {'beat_active': 'DJCi500.slicerBeatActive'}
+    //script.bindConnections('[Channel1]', controlsToFunctions, false);
 
 	midi.sendShortMsg(0xB0, 0x7F, 0x7E);
 };

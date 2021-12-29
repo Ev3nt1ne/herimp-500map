@@ -512,6 +512,87 @@
 			</control>
 
 			<!-- NN's MIDI Channel 7 (0x96  Deck A - Pads)-->
+			<!-- Pad Select-->
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x91</status>
+				<midino>0x0F</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x91</status>
+				<midino>0x10</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x91</status>
+				<midino>0x11</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x91</status>
+				<midino>0x12</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x91</status>
+				<midino>0x13</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x91</status>
+				<midino>0x14</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x91</status>
+				<midino>0x15</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x91</status>
+				<midino>0x16</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
 
 
 			<!--Pad MODE 1 - Hot Cues (SET)-->
@@ -757,86 +838,85 @@
 					<normal />
 				</options>
 			</control>
-			<!--Pad MODE 3 - Slicer = BEATJUMP-->
-
+			<!--Pad MODE 3 - Slicer-->
 			<control>
 				<group>[Channel1]</group>
-				<key>beatjump_1_backward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 1</description>
 				<status>0x96</status>
 				<midino>0x20</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatjump_1_forward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 2</description>
 				<status>0x96</status>
 				<midino>0x21</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatjump_2_backward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 3</description>
 				<status>0x96</status>
 				<midino>0x22</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatjump_2_forward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 4</description>
 				<status>0x96</status>
 				<midino>0x23</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatjump_4_backward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 5</description>
 				<status>0x96</status>
 				<midino>0x24</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatjump_4_forward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 6</description>
 				<status>0x96</status>
 				<midino>0x25</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatjump_8_backward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 7</description>
 				<status>0x96</status>
 				<midino>0x26</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatjump_8_forward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 8</description>
 				<status>0x96</status>
 				<midino>0x27</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<!--Pad MODE 4 - Sampler-->
@@ -1005,11 +1085,171 @@
 			<!--Pad MODE 5 - Not assigned: 0x40 to 0x47-->
 			<!--Pad MODE 6 - Not assigned: 0x50 to 0x57-->
 			<!--Pad MODE 7 - Not assigned: 0x60 to 0x67-->
-			<!--Pad MODE 8 - Not assigned: 0x70 to 0x77-->
+			<!--Pad MODE 8 - BeatJump: 0x70 to 0x77-->
+			<control>
+				<group>[Channel1]</group>
+				<key>beatjump_1_backward</key>
+				<description>PAD 1</description>
+				<status>0x96</status>
+				<midino>0x70</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatjump_1_forward</key>
+				<description>PAD 2</description>
+				<status>0x96</status>
+				<midino>0x71</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatjump_2_backward</key>
+				<description>PAD 3</description>
+				<status>0x96</status>
+				<midino>0x72</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatjump_2_forward</key>
+				<description>PAD 4</description>
+				<status>0x96</status>
+				<midino>0x73</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatjump_4_backward</key>
+				<description>PAD 5</description>
+				<status>0x96</status>
+				<midino>0x74</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatjump_4_forward</key>
+				<description>PAD 6</description>
+				<status>0x96</status>
+				<midino>0x75</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatjump_8_backward</key>
+				<description>PAD 7</description>
+				<status>0x96</status>
+				<midino>0x76</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatjump_8_forward</key>
+				<description>PAD 8</description>
+				<status>0x96</status>
+				<midino>0x77</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
 
 
 			<!-- NN's MIDI Channel 8 (0x97 Deck B - Pads)-->
-
+			<!-- Pad Select-->
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x92</status>
+				<midino>0x0F</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x92</status>
+				<midino>0x10</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x92</status>
+				<midino>0x11</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x92</status>
+				<midino>0x12</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x92</status>
+				<midino>0x13</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x92</status>
+				<midino>0x14</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x92</status>
+				<midino>0x15</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.padSelect</key>
+				<description>PAD select</description>
+				<status>0x92</status>
+				<midino>0x16</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
 
 			<!--Pad MODE 1 - Hot Cues (SET)-->
 			<control>
@@ -1254,86 +1494,85 @@
 					<normal />
 				</options>
 			</control>
-			<!--Pad MODE 3 - Slicer = BEATJUMP -->
-
+			<!--Pad MODE 3 - Slicer -->
 			<control>
 				<group>[Channel2]</group>
-				<key>beatjump_1_backward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 1</description>
 				<status>0x97</status>
 				<midino>0x20</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatjump_1_forward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 2</description>
 				<status>0x97</status>
 				<midino>0x21</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatjump_2_backward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 3</description>
 				<status>0x97</status>
 				<midino>0x22</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatjump_2_forward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 4</description>
 				<status>0x97</status>
 				<midino>0x23</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatjump_4_backward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 5</description>
 				<status>0x97</status>
 				<midino>0x24</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatjump_4_forward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 6</description>
 				<status>0x97</status>
 				<midino>0x25</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatjump_8_backward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 7</description>
 				<status>0x97</status>
 				<midino>0x26</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatjump_8_forward</key>
+				<key>DJCi500.slicerButtons</key>
 				<description>PAD 8</description>
 				<status>0x97</status>
 				<midino>0x27</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<!--Pad MODE 4 - Sampler-->
@@ -1502,7 +1741,87 @@
 			<!--Pad MODE 5  Not assigned: 0x40 to 0x47-->
 			<!--Pad MODE 6  Not assigned: 0x50 to 0x57-->
 			<!--Pad MODE 7  Not assigned: 0x60 to 0x67-->
-			<!--Pad MODE 8  Not assigned: 0x70 to 0x77-->
+			<!--Pad MODE 8  BeatJump: 0x70 to 0x77-->
+			<control>
+				<group>[Channel2]</group>
+				<key>beatjump_1_backward</key>
+				<description>PAD 1</description>
+				<status>0x97</status>
+				<midino>0x70</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatjump_1_forward</key>
+				<description>PAD 2</description>
+				<status>0x97</status>
+				<midino>0x71</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatjump_2_backward</key>
+				<description>PAD 3</description>
+				<status>0x97</status>
+				<midino>0x72</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatjump_2_forward</key>
+				<description>PAD 4</description>
+				<status>0x97</status>
+				<midino>0x73</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatjump_4_backward</key>
+				<description>PAD 5</description>
+				<status>0x97</status>
+				<midino>0x74</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatjump_4_forward</key>
+				<description>PAD 6</description>
+				<status>0x97</status>
+				<midino>0x75</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatjump_8_backward</key>
+				<description>PAD 7</description>
+				<status>0x97</status>
+				<midino>0x76</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatjump_8_forward</key>
+				<description>PAD 8</description>
+				<status>0x97</status>
+				<midino>0x77</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
 
 
 			<!--Continuous Controllers (CC) - Faders/knobs -->
@@ -2974,13 +3293,16 @@
 				<off>0x08</off>
 				<minimum>0.5</minimum>
 			</output>
+
+
+
 			<!--LED BEATJUMP-->
 			<output>
 				<group>[Channel1]</group>
 				<key>beatjump_1_backward</key>
 				<description>(Beatjump 1 backward DECK A)</description>
 				<status>0x96</status>
-				<midino>0x20</midino>
+				<midino>0x70</midino>
 				<on>0x0F</on>
 				<off>0x07</off>
 				<minimum>0.5</minimum>
@@ -2990,7 +3312,7 @@
 				<key>beatjump_1_backward</key>
 				<description>(Beatjump 1 backward DECK B)</description>
 				<status>0x97</status>
-				<midino>0x20</midino>
+				<midino>0x70</midino>
 				<on>0x0F</on>
 				<off>0x07</off>
 				<minimum>0.5</minimum>
@@ -3000,7 +3322,7 @@
 				<key>beatjump_1_forward</key>
 				<description>(Beatjump 1 forward DECK A)</description>
 				<status>0x96</status>
-				<midino>0x21</midino>
+				<midino>0x71</midino>
 				<on>0x0F</on>
 				<off>0x07</off>
 				<minimum>0.5</minimum>
@@ -3010,7 +3332,7 @@
 				<key>beatjump_1_forward</key>
 				<description>(Beatjump 1 forward DECK B)</description>
 				<status>0x97</status>
-				<midino>0x21</midino>
+				<midino>0x71</midino>
 				<on>0x0F</on>
 				<off>0x07</off>
 				<minimum>0.5</minimum>
@@ -3020,7 +3342,7 @@
 				<key>beatjump_2_backward</key>
 				<description>(Beatjump 2 backward DECK A)</description>
 				<status>0x96</status>
-				<midino>0x22</midino>
+				<midino>0x72</midino>
 				<on>0x64</on>
 				<off>0x44</off>
 				<minimum>0.5</minimum>
@@ -3030,7 +3352,7 @@
 				<key>beatjump_2_backward</key>
 				<description>(Beatjump 2 backward DECK B)</description>
 				<status>0x97</status>
-				<midino>0x22</midino>
+				<midino>0x72</midino>
 				<on>0x64</on>
 				<off>0x44</off>
 				<minimum>0.5</minimum>
@@ -3040,7 +3362,7 @@
 				<key>beatjump_2_forward</key>
 				<description>(Beatjump 2 forward DECK A)</description>
 				<status>0x96</status>
-				<midino>0x23</midino>
+				<midino>0x73</midino>
 				<on>0x64</on>
 				<off>0x44</off>
 				<minimum>0.5</minimum>
@@ -3050,7 +3372,7 @@
 				<key>beatjump_2_forward</key>
 				<description>(Beatjump 2 forward DECK B)</description>
 				<status>0x97</status>
-				<midino>0x23</midino>
+				<midino>0x73</midino>
 				<on>0x64</on>
 				<off>0x44</off>
 				<minimum>0.5</minimum>
@@ -3060,7 +3382,7 @@
 				<key>beatjump_4_backward</key>
 				<description>(Beatjump 4 backward DECK A)</description>
 				<status>0x96</status>
-				<midino>0x24</midino>
+				<midino>0x74</midino>
 				<on>0x2F</on>
 				<off>0x27</off>
 				<minimum>0.5</minimum>
@@ -3070,7 +3392,7 @@
 				<key>beatjump_4_backward</key>
 				<description>(Beatjump 4 backward DECK B)</description>
 				<status>0x97</status>
-				<midino>0x24</midino>
+				<midino>0x74</midino>
 				<on>0x2F</on>
 				<off>0x27</off>
 				<minimum>0.5</minimum>
@@ -3080,7 +3402,7 @@
 				<key>beatjump_4_forward</key>
 				<description>(Beatjump 4 forward DECK A)</description>
 				<status>0x96</status>
-				<midino>0x25</midino>
+				<midino>0x75</midino>
 				<on>0x2F</on>
 				<off>0x27</off>
 				<minimum>0.5</minimum>
@@ -3090,7 +3412,7 @@
 				<key>beatjump_4_forward</key>
 				<description>(Beatjump 4 forward DECK B)</description>
 				<status>0x97</status>
-				<midino>0x25</midino>
+				<midino>0x75</midino>
 				<on>0x2F</on>
 				<off>0x27</off>
 				<minimum>0.5</minimum>
@@ -3100,7 +3422,7 @@
 				<key>beatjump_8_backward</key>
 				<description>(Beatjump 8 backward DECK A)</description>
 				<status>0x96</status>
-				<midino>0x26</midino>
+				<midino>0x76</midino>
 				<on>0x6C</on>
 				<off>0x4C</off>
 				<minimum>0.5</minimum>
@@ -3110,7 +3432,7 @@
 				<key>beatjump_8_backward</key>
 				<description>(Beatjump 8 backward DECK B)</description>
 				<status>0x97</status>
-				<midino>0x26</midino>
+				<midino>0x76</midino>
 				<on>0x6C</on>
 				<off>0x4C</off>
 				<minimum>0.5</minimum>
@@ -3120,7 +3442,7 @@
 				<key>beatjump_8_forward</key>
 				<description>(Beatjump 8 forward DECK A)</description>
 				<status>0x96</status>
-				<midino>0x27</midino>
+				<midino>0x77</midino>
 				<on>0x6C</on>
 				<off>0x4C</off>
 				<minimum>0.5</minimum>
@@ -3130,7 +3452,7 @@
 				<key>beatjump_8_forward</key>
 				<description>(Beatjump 8 forward Deck B)</description>
 				<status>0x97</status>
-				<midino>0x27</midino>
+				<midino>0x77</midino>
 				<on>0x6C</on>
 				<off>0x4C</off>
 				<minimum>0.5</minimum>

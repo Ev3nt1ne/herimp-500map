@@ -60,3 +60,17 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 22: shift+knob per scalare di 10 in 10
 
 23: fix errors in --developer mode
+
+24: slicer:
+        a: fix the slicer with slip etc.
+        b: add the loop variant
+        c: make so shift+1 reset the beat to 0/1
+        d: change lights: light up the continuing shit + the button I press
+        r: vicino ai beat non funziona
+        f: con il loop lo slicer normale non funziona
+        (Jump forward by beatjump_size (positive) or backward by beatjump_size (negative). If a loop is active, the loop is moved by beatjump_size.)
+
+
+25: implement rewind
+
+26: this is not working: If play is set to 1 while previewing is active, the playback will continue and no seek occurs.

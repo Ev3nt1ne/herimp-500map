@@ -58,7 +58,9 @@ I (as IMPORTAnt):
 
 J: as jogwheel
 
-K:
+K: for i to 8 pad
+    active = ((slicerPosInSection === i) ? ledBeatState : !ledBeatState) ? 0x7F : 0x00;
+    con ledBeatState = true o false(false fa il negativo)
 
 L: as LED:
 <!-- LED Beat Align (Track end warning)-->
