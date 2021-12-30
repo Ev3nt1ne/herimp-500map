@@ -62,15 +62,12 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 23: fix errors in --developer mode
 
 24: slicer:
-        a: fix the slicer with slip etc.
         b: add the loop variant
         c: make so shift+1 reset the beat to 0/1
         d: change lights: light up the continuing shit + the button I press
-        r: vicino ai beat non funziona
-        f: con il loop lo slicer normale non funziona
-        (Jump forward by beatjump_size (positive) or backward by beatjump_size (negative). If a loop is active, the loop is moved by beatjump_size.)
 
-        Il problema è che lo slip si toglie alla fine del beat jumpato, invece del beat vero. una idea è lanciare un timer che finisce lo slip con un tempo in base alla distanza dal prox beat.
+        problema: se il loop non inizia sull'1. --> convertire.
+        problema: talvolta non funziona, al momento non c'è il -8
 
 
 25: implement rewind
@@ -80,3 +77,5 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 27:instead of putting sampler cue with the shift try to find a real Pause
 
 28: fix the loop: out is autoloop toggle.
+
+29: a lot of stuff (mainly led and status) does not work when I reset the consolle. Fix that.

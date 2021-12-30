@@ -5,7 +5,8 @@
 	Slicer: Ported and Greatly improved the slicer. Only problem is that:
 		"Jump forward by beatjump_size (positive) or backward by beatjump_size
 		(negative). If a loop is active, the loop is moved by beatjump_size"
-		so I decided to put the loop slicer as default.
+		Problems: Sometimes the slicer does not properly (if you press buttons
+		too fast) and loop is not working if loop start is not quantized on 1.
 
 
 5:
