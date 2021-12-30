@@ -70,7 +70,13 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
         f: con il loop lo slicer normale non funziona
         (Jump forward by beatjump_size (positive) or backward by beatjump_size (negative). If a loop is active, the loop is moved by beatjump_size.)
 
+        Il problema è che lo slip si toglie alla fine del beat jumpato, invece del beat vero. una idea è lanciare un timer che finisce lo slip con un tempo in base alla distanza dal prox beat.
+
 
 25: implement rewind
 
 26: this is not working: If play is set to 1 while previewing is active, the playback will continue and no seek occurs.
+
+27:instead of putting sampler cue with the shift try to find a real Pause
+
+28: fix the loop: out is autoloop toggle.
