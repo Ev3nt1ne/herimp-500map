@@ -2,12 +2,14 @@
 6:
 	small fixes for beatmatch.
 	Added support for double Tempo for beatmatch
-	Slicer: Ported and Greatly improved the slicer. Only problem is that:
-		"Jump forward by beatjump_size (positive) or backward by beatjump_size
-		(negative). If a loop is active, the loop is moved by beatjump_size"
-		Problems: Sometimes the slicer does not properly (if you press buttons
-		too fast) and loop is not working if loop start is not quantized on 1.
-
+	Slicer: Ported and Greatly improved the slicer. Added also the compatibility
+	 	with the loop. Problems: Sometimes the slicer does not work properly (if
+		you press buttons too fast); looping is not working if loop start is not
+		quantized (exactly) on beat 1
+	Moved Pad 7 to Pad 5 to allign with Serato and DJuced functionalities
+	Moved Beatjump to Pad 8 to allign with Serato and DJuced functionalities
+	Moved Slicer to Pad 8 to allign with Serato and DJuced functionalities
+	Added shift+keychange (pad 5) will reset the key.
 
 5:
 	Fixed a bug: Shift + scratchWheel. It was not a function.

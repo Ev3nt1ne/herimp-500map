@@ -15,9 +15,6 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
                             voglio anche con fx4
 
 2: obtain the beat align lights from wireshark
-    jog lights up at the end of the song (I can get the signal)
-
-4: mode 5: fix key -1 -0.5 + 0.5 + 1 - (below)
 
 5: the 3 mode on the crossfader (smooth, abrupt and circle)
     need to understand where they go in mixxx
@@ -39,25 +36,13 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 14: The color of hotcues is accessible with engine.getValue('[ChannelN]', 'hotcue_X_color')
     (where N and X are the respective Deck and hotcue whose information is being accessed) as an RGB color code
 
-15: Reset tempo (cannot do with shift + sync since it is already taken)
-        NO:I can put shift+sync = reset tempo. then put all key stuff on a pad.
-            because i should not need to reset tempo so brutally
-
 16: look at other consoles for pad functionalities
 
-17: pad 7:
-        -1tone -1 semitone + 1 semitone + 1tone
-        -2xtempo -1xtempo +1x tempo +2x tempo (regarding pitch slider control unit measure)
-
-18: loop functions (shift etc) look main dj software
-
-19: shift+keychange = reset key. led pad 7
+18: loop functions (shift etc) look djuce dj software
 
 20: to fix tempo the jog are really bad sensitivity. Fix it (succede solo se la canzone è in stop, probabilmente è più un problema di mixxx che del mapping)
 
-21: assistant = AutoDJ
-
-22: shift+knob per scalare di 10 in 10
+22: shift+knob(browser) per scalare di 10 in 10 nella libreria
 
 23: fix errors in --developer mode
 
@@ -74,8 +59,12 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 
 26: this is not working: If play is set to 1 while previewing is active, the playback will continue and no seek occurs.
 
-27:instead of putting sampler cue with the shift try to find a real Pause
+27: instead of putting sampler cue with the shift try to find a real stop
 
 28: fix the loop: out is autoloop toggle.
 
 29: a lot of stuff (mainly led and status) does not work when I reset the consolle. Fix that.
+
+30: with the soft pause feature, you need to go back to where the pause was (because it is not properly implemented in mixxx)
+
+31: slip is not properly implemented in mixxx. Fix it, so when slip is active, if the song is paused (or the vinyl is stopped), it start to play again at the slip point.

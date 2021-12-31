@@ -1082,7 +1082,131 @@
 				</options>
 			</control>
 
-			<!--Pad MODE 5 - Not assigned: 0x40 to 0x47-->
+			<!--Pad MODE 5 - 0x40 to 0x47-->
+			<!--Personalized Pads-->
+			<control>
+				<group>[Channel1]</group>
+				<key>pitch_up</key>
+				<description>Pitch up - semitone</description>
+				<status>0x96</status>
+				<midino>0x42</midino>
+				<options>
+					<normal/>
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>pitch_down</key>
+				<description>Pitch down - semitone</description>
+				<status>0x96</status>
+				<midino>0x41</midino>
+				<options>
+					<normal/>
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.pitchUpTone</key>
+				<description>Pitch up - tone</description>
+				<status>0x96</status>
+				<midino>0x43</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.pitchDownTone</key>
+				<description>Pitch down - tone</description>
+				<status>0x96</status>
+				<midino>0x40</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.pitchSliderIncrease</key>
+				<description>Pitch slider increase resolution</description>
+				<status>0x96</status>
+				<midino>0x46</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.pitchSliderDecrease</key>
+				<description>Pitch slider Decrease resolution</description>
+				<status>0x96</status>
+				<midino>0x45</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+
+			<!-- Shift -->
+			<control>
+				<group>[Channel1]</group>
+				<key>reset_key</key>
+				<description>KeyReset</description>
+				<status>0x96</status>
+				<midino>0x48</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>reset_key</key>
+				<description>KeyReset</description>
+				<status>0x96</status>
+				<midino>0x49</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>reset_key</key>
+				<description>KeyReset</description>
+				<status>0x96</status>
+				<midino>0x4A</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>reset_key</key>
+				<description>KeyReset</description>
+				<status>0x96</status>
+				<midino>0x4B</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.pitchSliderReset</key>
+				<description>Pitch slider Reset resolution</description>
+				<status>0x96</status>
+				<midino>0x4E</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.pitchSliderReset</key>
+				<description>Pitch slider Reset resolution</description>
+				<status>0x96</status>
+				<midino>0x4D</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+
 			<!--Pad MODE 6 - Not assigned: 0x50 to 0x57-->
 			<!--Pad MODE 7 - Not assigned: 0x60 to 0x67-->
 			<!--Pad MODE 8 - BeatJump: 0x70 to 0x77-->
@@ -1738,7 +1862,130 @@
 				</options>
 			</control>
 
-			<!--Pad MODE 5  Not assigned: 0x40 to 0x47-->
+			<!--Pad MODE 5  : 0x40 to 0x47-->
+			<!-- Personalized Pad -->
+			<control>
+				<group>[Channel2]</group>
+				<key>pitch_up</key>
+				<description>Pitch up - semitone</description>
+				<status>0x97</status>
+				<midino>0x42</midino>
+				<options>
+					<normal/>
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>pitch_down</key>
+				<description>Pitch down - semitone</description>
+				<status>0x97</status>
+				<midino>0x41</midino>
+				<options>
+					<normal/>
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.pitchUpTone</key>
+				<description>Pitch up - tone</description>
+				<status>0x97</status>
+				<midino>0x43</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.pitchDownTone</key>
+				<description>Pitch down - tone</description>
+				<status>0x97</status>
+				<midino>0x40</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.pitchSliderIncrease</key>
+				<description>Pitch slider increase resolution</description>
+				<status>0x97</status>
+				<midino>0x46</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.pitchSliderDecrease</key>
+				<description>Pitch slider Decrease resolution</description>
+				<status>0x97</status>
+				<midino>0x45</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+
+			<!-- Shift -->
+			<control>
+				<group>[Channel2]</group>
+				<key>reset_key</key>
+				<description>KeyReset</description>
+				<status>0x97</status>
+				<midino>0x48</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>reset_key</key>
+				<description>KeyReset</description>
+				<status>0x97</status>
+				<midino>0x49</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>reset_key</key>
+				<description>KeyReset</description>
+				<status>0x97</status>
+				<midino>0x4A</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>reset_key</key>
+				<description>KeyReset</description>
+				<status>0x97</status>
+				<midino>0x4B</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.pitchSliderReset</key>
+				<description>Pitch slider Reset resolution</description>
+				<status>0x97</status>
+				<midino>0x4E</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>DJCi500.pitchSliderReset</key>
+				<description>Pitch slider Reset resolution</description>
+				<status>0x97</status>
+				<midino>0x4D</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
 			<!--Pad MODE 6  Not assigned: 0x50 to 0x57-->
 			<!--Pad MODE 7  Not assigned: 0x60 to 0x67-->
 			<!--Pad MODE 8  BeatJump: 0x70 to 0x77-->
@@ -2261,177 +2508,6 @@
 			<midino>0x17</midino>
 			<options>
 				<!-- <script-binding /> -->
-				<script-binding />
-			</options>
-		</control>
-
-
-		<!--Personalized Pads-->
-		<!--Pad: 7 Deck 1-->
-		<control>
-			<group>[Channel1]</group>
-			<key>pitch_up</key>
-			<description>Pitch up - semitone</description>
-			<status>0x96</status>
-			<midino>0x62</midino>
-			<options>
-				<normal/>
-			</options>
-		</control>
-		<control>
-			<group>[Channel1]</group>
-			<key>pitch_down</key>
-			<description>Pitch down - semitone</description>
-			<status>0x96</status>
-			<midino>0x61</midino>
-			<options>
-				<normal/>
-			</options>
-		</control>
-		<control>
-			<group>[Channel1]</group>
-			<key>DJCi500.pitchUpTone</key>
-			<description>Pitch up - tone</description>
-			<status>0x96</status>
-			<midino>0x63</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-		<control>
-			<group>[Channel1]</group>
-			<key>DJCi500.pitchDownTone</key>
-			<description>Pitch down - tone</description>
-			<status>0x96</status>
-			<midino>0x60</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-		<control>
-			<group>[Channel1]</group>
-			<key>DJCi500.pitchSliderIncrease</key>
-			<description>Pitch slider increase resolution</description>
-			<status>0x96</status>
-			<midino>0x66</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-		<control>
-			<group>[Channel1]</group>
-			<key>DJCi500.pitchSliderDecrease</key>
-			<description>Pitch slider Decrease resolution</description>
-			<status>0x96</status>
-			<midino>0x65</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-
-		<!-- Shift -->
-		<control>
-			<group>[Channel1]</group>
-			<key>DJCi500.pitchSliderReset</key>
-			<description>Pitch slider Reset resolution</description>
-			<status>0x96</status>
-			<midino>0x6E</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-		<control>
-			<group>[Channel1]</group>
-			<key>DJCi500.pitchSliderReset</key>
-			<description>Pitch slider Reset resolution</description>
-			<status>0x96</status>
-			<midino>0x6D</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-
-
-		<!--Pad: 7 Deck 2-->
-		<control>
-			<group>[Channel2]</group>
-			<key>pitch_up</key>
-			<description>Pitch up - semitone</description>
-			<status>0x97</status>
-			<midino>0x62</midino>
-			<options>
-				<normal/>
-			</options>
-		</control>
-		<control>
-			<group>[Channel2]</group>
-			<key>pitch_down</key>
-			<description>Pitch down - semitone</description>
-			<status>0x97</status>
-			<midino>0x61</midino>
-			<options>
-				<normal/>
-			</options>
-		</control>
-		<control>
-			<group>[Channel2]</group>
-			<key>DJCi500.pitchUpTone</key>
-			<description>Pitch up - tone</description>
-			<status>0x97</status>
-			<midino>0x63</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-		<control>
-			<group>[Channel2]</group>
-			<key>DJCi500.pitchDownTone</key>
-			<description>Pitch down - tone</description>
-			<status>0x97</status>
-			<midino>0x60</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-		<control>
-			<group>[Channel2]</group>
-			<key>DJCi500.pitchSliderIncrease</key>
-			<description>Pitch slider increase resolution</description>
-			<status>0x97</status>
-			<midino>0x66</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-		<control>
-			<group>[Channel2]</group>
-			<key>DJCi500.pitchSliderDecrease</key>
-			<description>Pitch slider Decrease resolution</description>
-			<status>0x97</status>
-			<midino>0x65</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-
-		<!-- Shift -->
-		<control>
-			<group>[Channel2]</group>
-			<key>DJCi500.pitchSliderReset</key>
-			<description>Pitch slider Reset resolution</description>
-			<status>0x97</status>
-			<midino>0x6E</midino>
-			<options>
-				<script-binding />
-			</options>
-		</control>
-		<control>
-			<group>[Channel2]</group>
-			<key>DJCi500.pitchSliderReset</key>
-			<description>Pitch slider Reset resolution</description>
-			<status>0x97</status>
-			<midino>0x6D</midino>
-			<options>
 				<script-binding />
 			</options>
 		</control>

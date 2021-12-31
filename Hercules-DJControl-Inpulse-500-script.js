@@ -71,7 +71,7 @@ DJCi500.slicerTimer = [false, false, false, false];
 //DJCi500.slicerJumping = [0, 0, 0, 0];
 DJCi500.slicerActive = [false, false, false, false];
 DJCi500.slicerAlreadyJumped = [false, false, false, false];
-DJCi500.slicerButton = [0, 0, 0, 0];
+DJCi500.slicerButton = [-1, -1, -1, -1];
 DJCi500.slicerModes = {
     'contSlice': 0,
     'loopSlice': 1
@@ -828,9 +828,9 @@ DJCi500.slicerButtons = function(channel, control, value, status, group) {
     */
 
     //DJCi500.slicerActive[deck] = value ? true : false;
-    DJCi500.slicerButton[deck] = index;
 
     if (value) {
+        DJCi500.slicerButton[deck] = index;
         //Maybe I need to update this (seems sometimes it does not work.)
         //DJCi500.slicerBeatsPassed[deck] = Math.floor((playposition * duration) * (bpm / 60.0));
         beatsToJump = (index * (domain / 8)) - ((DJCi500.slicerBeatsPassed[deck] % domain));
@@ -848,7 +848,7 @@ DJCi500.slicerButtons = function(channel, control, value, status, group) {
                 ((!loopEnabled) || (DJCi500.slicerBeatsPassed[deck] % domain) != (domain-1)) ) {
                 timer_ms += 60.0/engine.getValue(group, "bpm")*1000;
             }
-            
+
             engine.beginTimer( timer_ms,
                 //"DJCi500.slicerTimerCallback("+group+")", true);
                 function() {
@@ -875,7 +875,8 @@ DJCi500.slicerButtons = function(channel, control, value, status, group) {
                     else {
                         engine.setValue(group, "slip_enabled", false);
                     }
-                    DJCi500.slicerTimer[deck] = false;},
+                    DJCi500.slicerTimer[deck] = false;
+                    DJCi500.slicerButton[deck] = -1;},
                 true);
         }
 
@@ -892,6 +893,7 @@ DJCi500.slicerButtons = function(channel, control, value, status, group) {
         if (loopEnabled){
             engine.setValue(group, "reloop_toggle", true);
         }
+        midi.sendShortMsg((0x96+deck), 0x20+index, 0x62);
     } //if value
 
 };
@@ -904,7 +906,7 @@ DJCi500.slicerBeatActive = function(value, group, control) {
         playposition = engine.getValue(group, "playposition"),
         duration = engine.getValue(group, "duration"),
         slicerPosInSection = 0,
-        ledBeatState = true,
+        ledBeatState = false,
         domain = DJCi500.selectedSlicerDomain[deck];
 
     //this works.
@@ -930,17 +932,13 @@ DJCi500.slicerBeatActive = function(value, group, control) {
         }
 */
         // PAD Led control:
-        for (var i = 0; i < 8; i++) {
-            //if (DJCi500.slicerButton[deck] !== i) {
-            active = ((slicerPosInSection == i) ? ledBeatState : !ledBeatState) ? 0x7F : 0x00;
-            midi.sendShortMsg((0x96+deck), 0x20+i, active);
-            //}
-        /*
-            } else {
-                active = (slicerPosInSection === i) ? 0x7F : 0x00;
+        if (DJCi500.slicerButton[deck] != slicerPosInSection) {
+            for (var i = 0; i < 8; i++) {
+                active = ((slicerPosInSection == i) ? ledBeatState : !ledBeatState) ? 0x03 : 0x7F;
                 midi.sendShortMsg((0x96+deck), 0x20+i, active);
             }
-        */
+        } else {
+            midi.sendShortMsg((0x96+deck), 0x20+DJCi500.slicerButton[deck], 0x62);
         }
     } else {
         DJCi500.slicerAlreadyJumped[deck] = false;
