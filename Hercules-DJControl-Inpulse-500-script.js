@@ -563,42 +563,52 @@ DJCi500.blinkFxLed = function () {
         //Deck1
         midi.sendShortMsg(0x91, 0x1E, 0x0);
         midi.sendShortMsg(0x91, 0x1F, 0x7F);
+        midi.sendShortMsg(0x91, 0x2C, 0x0);
         //Deck2
         midi.sendShortMsg(0x92, 0x1F, 0x0);
         midi.sendShortMsg(0x92, 0x1E, 0x7F);
+        midi.sendShortMsg(0x92, 0x2C, 0x0);
 
         //clear beatalign leds
         //Deck1
         midi.sendShortMsg(0x91, 0x1C, 0x0);
         midi.sendShortMsg(0x91, 0x1D, 0x0);
+        midi.sendShortMsg(0x91, 0x2D, 0x0);
         //Deck2
         midi.sendShortMsg(0x92, 0x1C, 0x0);
         midi.sendShortMsg(0x92, 0x1D, 0x0);
+        midi.sendShortMsg(0x92, 0x2D, 0x0);
     }
     else if ( diff > 0.25)
     {
         //Deck1
         midi.sendShortMsg(0x91, 0x1F, 0x0);
         midi.sendShortMsg(0x91, 0x1E, 0x7F);
+        midi.sendShortMsg(0x91, 0x2C, 0x0);
         //Deck2
         midi.sendShortMsg(0x92, 0x1E, 0x0);
         midi.sendShortMsg(0x92, 0x1F, 0x7F);
+        midi.sendShortMsg(0x92, 0x2C, 0x0);
 
         //clear beatalign leds
         //Deck1
         midi.sendShortMsg(0x91, 0x1C, 0x0);
         midi.sendShortMsg(0x91, 0x1D, 0x0);
+        midi.sendShortMsg(0x91, 0x2D, 0x0);
         //Deck2
         midi.sendShortMsg(0x92, 0x1C, 0x0);
         midi.sendShortMsg(0x92, 0x1D, 0x0);
+        midi.sendShortMsg(0x92, 0x2D, 0x0);
     }
     else {
         //Deck1
         midi.sendShortMsg(0x91, 0x1E, 0x0);
         midi.sendShortMsg(0x91, 0x1F, 0x0);
+        midi.sendShortMsg(0x91, 0x2C, 0x7F);
         //Deck2
         midi.sendShortMsg(0x92, 0x1E, 0x0);
         midi.sendShortMsg(0x92, 0x1F, 0x0);
+        midi.sendShortMsg(0x92, 0x2C, 0x7F);
 
         //Do beat alignement only if the tracks are already on Tempo
         // and only if they are playing
@@ -629,35 +639,43 @@ DJCi500.blinkFxLed = function () {
                 //Deck1
                 midi.sendShortMsg(0x91, 0x1C, 0x0);
                 midi.sendShortMsg(0x91, 0x1D, 0x0);
+                midi.sendShortMsg(0x91, 0x2D, 0x7F);
                 //Deck2
                 midi.sendShortMsg(0x92, 0x1C, 0x0);
                 midi.sendShortMsg(0x92, 0x1D, 0x0);
+                midi.sendShortMsg(0x92, 0x2D, 0x7F);
             }
             else if ( diff < 0.5)
             {
                 //Deck1
                 midi.sendShortMsg(0x91, 0x1C, 0x0);
                 midi.sendShortMsg(0x91, 0x1D, 0x7F);
+                midi.sendShortMsg(0x91, 0x2D, 0x0);
                 //Deck2
                 midi.sendShortMsg(0x92, 0x1D, 0x0);
                 midi.sendShortMsg(0x92, 0x1C, 0x7F);
+                midi.sendShortMsg(0x91, 0x2D, 0x0);
             }
             else {
                 //Deck1
                 midi.sendShortMsg(0x91, 0x1D, 0x0);
                 midi.sendShortMsg(0x91, 0x1C, 0x7F);
+                midi.sendShortMsg(0x91, 0x2D, 0x0);
                 //Deck2
                 midi.sendShortMsg(0x92, 0x1C, 0x0);
                 midi.sendShortMsg(0x92, 0x1D, 0x7F);
+                midi.sendShortMsg(0x92, 0x2D, 0x0);
             }
         }//if playing
         else {
             //Deck1
             midi.sendShortMsg(0x91, 0x1C, 0x0);
             midi.sendShortMsg(0x91, 0x1D, 0x0);
+            midi.sendShortMsg(0x91, 0x2D, 0x0);
             //Deck2
             midi.sendShortMsg(0x92, 0x1C, 0x0);
             midi.sendShortMsg(0x92, 0x1D, 0x0);
+            midi.sendShortMsg(0x92, 0x2D, 0x0);
         }
     }//else tempo
 
