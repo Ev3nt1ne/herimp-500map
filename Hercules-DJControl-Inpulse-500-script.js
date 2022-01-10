@@ -750,7 +750,7 @@ DJCi500.pitchSliderReset = function (channel, control, value, status, group) {
 DJCi500.play = function (channel, control, value, status, group) {
 
     if (value == 0x7F){
-        if (engine.getValue(group, "play_latched")){ //play_indicator
+        if (engine.getValue(group, "play_latched")){ //play_indicator play_latched
             var deck = parseInt(group.substring(8, 9)) - 1;
             if (DJCi500.slowPauseSetState[deck]){
                 engine.brake((deck+1),
@@ -758,11 +758,11 @@ DJCi500.play = function (channel, control, value, status, group) {
                     54);
             }
             else {
-                engine.setValue(group, "play", 0);
+                script.toggleControl(group, "play");
             }
         }
         else{
-            engine.setValue(group, "play", 1);
+            script.toggleControl(group, "play");
         }
     }
 };

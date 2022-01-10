@@ -1,4 +1,9 @@
 
+7:
+	Added BeatAlign and Tempo OK
+	Fixed play while cueing
+
+
 6:
 	small fixes for beatmatch.
 	Added support for double Tempo for beatmatch

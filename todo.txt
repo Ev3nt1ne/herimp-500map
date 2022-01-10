@@ -57,7 +57,6 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 
 25: implement rewind
 
-26: this is not working: If play is set to 1 while previewing is active, the playback will continue and no seek occurs.
 
 27: instead of putting sampler cue with the shift try to find a real stop
 
