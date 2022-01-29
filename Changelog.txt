@@ -2,6 +2,8 @@
 7:
 	Added BeatAlign and Tempo OK
 	Fixed play while cueing
+	Changed The FX knob from Dry/wet to SuperKnob(aka intensity) like Serato
+	Added MoveHorizontal with Shift+browser (Bentheshrubber)
 
 
 6:

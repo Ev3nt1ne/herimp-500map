@@ -14,7 +14,6 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
                             il punto è: voglio che le knob funzionino solo in base allo stato degli fx o voglio controllarle anche con fx4?
                             voglio anche con fx4
 
-2: obtain the beat align lights from wireshark
 
 5: the 3 mode on the crossfader (smooth, abrupt and circle)
     need to understand where they go in mixxx
@@ -67,3 +66,7 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 30: with the soft pause feature, you need to go back to where the pause was (because it is not properly implemented in mixxx)
 
 31: slip is not properly implemented in mixxx. Fix it, so when slip is active, if the song is paused (or the vinyl is stopped), it start to play again at the slip point.
+
+32: colori: sistemare che siano attivi (aka disattivi) di base??
+    beatroll cambiare colore
+    group 5: 02/03 12/1F 76/74(118/116) 72/70 (114/112) --> this is wrong need to check colors on original excel

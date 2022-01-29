@@ -2096,6 +2096,16 @@
 					<selectknob />
 				</options>
 			</control>
+			<control>
+				<group>[Library]</group>
+				<key>MoveHorizontal</key>
+				<description>Move Horizontal (Browser Knob)</description>
+				<status>0xB3</status>
+				<midino>0x01</midino>
+				<options>
+					<selectknob />
+				</options>
+			</control>
 
 			<!-- CC's MIDI Channel 2 (0xB1 Deck A - Standard mode)-->
 
@@ -3694,6 +3704,7 @@
 				<off>0x12</off>
 				<minimum>0.5</minimum>
 			</output>
+
 
 		</outputs>
 	</controller>

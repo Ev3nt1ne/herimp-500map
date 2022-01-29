@@ -359,7 +359,10 @@ DJCi500.filterKnob1 = function (channel, control, value, status, group) {
     var deck_sel = (DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 1);
     //engine.getValue(string group, string key);
     if (fx_active && deck_sel) {
-        engine.setValue("[EffectRack1_EffectUnit1]", "mix", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+        //engine.setValue("[EffectRack1_EffectUnit1]", "mix", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+        engine.setValue("[EffectRack1_EffectUnit1]", "super1", Math.abs(script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127) - 0.5)*2 );
+        //This below does not work somehow
+        //engine.setValue("[EffectRack1_EffectUnit1]", "super1", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 63, 127) );
     } else {
         engine.setValue("[QuickEffectRack1_[Channel1]]", "super1", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
     }
@@ -369,7 +372,8 @@ DJCi500.filterKnob2 = function (channel, control, value, status, group) {
     var deck_sel = (DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 2);
     //engine.getValue(string group, string key);
     if (fx_active && deck_sel) {
-        engine.setValue("[EffectRack1_EffectUnit2]", "mix", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+        //engine.setValue("[EffectRack1_EffectUnit2]", "mix", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+        engine.setValue("[EffectRack1_EffectUnit2]", "super1", Math.abs(script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127) - 0.5)*2 );
     } else {
         engine.setValue("[QuickEffectRack1_[Channel2]]", "super1", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
     }
@@ -686,6 +690,7 @@ DJCi500.pitchUpTone = function (channel, control, value, status, group) {
     if (value == 0x7F){
         engine.setValue(group, "pitch_up", 1);
         engine.setValue(group, "pitch_up", 1);
+        //midi.sendShortMsg((, 0x20+i, active);
     }
 };
 DJCi500.pitchDownTone = function (channel, control, value, status, group) {
@@ -967,6 +972,43 @@ DJCi500.slicerBeatActive = function(value, group, control) {
 
 
 /////
+// Control knob
+/*
+//1: fare un altro timer (1 sec)
+{
+        //1: define which is the main deck:
+
+        //A: Acquire the volume Faders
+        //B: Acquire the crossfader.
+        //Define the main deck:
+        //cases:
+        //only one deck playing
+        if deck1
+            if Deck2{
+                if volume1 > volume2 + slack {
+                    stateapp=deck1;
+                }
+                elseif volume2 > volume1 + slack
+                stateapp=Deck
+                else stateapp = 0
+                //stessa cosa per il cross Faders
+
+                se emntrambi 0 o differenti
+                state undefined, prendi la più a fine
+                altrimeti è lo stato.
+            }
+            else {
+                state = deck1
+            }
+        else {
+            state = deck2
+        }
+        //both deck playing
+        //s
+}
+*/
+
+
 
 DJCi500.shutdown = function() {
 
