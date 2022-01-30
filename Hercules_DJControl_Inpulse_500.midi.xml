@@ -1086,22 +1086,22 @@
 			<!--Personalized Pads-->
 			<control>
 				<group>[Channel1]</group>
-				<key>pitch_up</key>
+				<key>DJCi500.pitchUpSemiTone</key>
 				<description>Pitch up - semitone</description>
 				<status>0x96</status>
 				<midino>0x42</midino>
 				<options>
-					<normal/>
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>pitch_down</key>
+				<key>DJCi500.pitchDownSemiTone</key>
 				<description>Pitch down - semitone</description>
 				<status>0x96</status>
 				<midino>0x41</midino>
 				<options>
-					<normal/>
+					<script-binding />
 				</options>
 			</control>
 			<control>
@@ -1140,6 +1140,18 @@
 				<description>Pitch slider Decrease resolution</description>
 				<status>0x96</status>
 				<midino>0x45</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+
+			<!-- to Comment -->
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.TestColor</key>
+				<description>testing color</description>
+				<status>0x96</status>
+				<midino>0x44</midino>
 				<options>
 					<script-binding />
 				</options>
@@ -1866,22 +1878,22 @@
 			<!-- Personalized Pad -->
 			<control>
 				<group>[Channel2]</group>
-				<key>pitch_up</key>
+				<key>DJCi500.pitchUpSemiTone</key>
 				<description>Pitch up - semitone</description>
 				<status>0x97</status>
 				<midino>0x42</midino>
 				<options>
-					<normal/>
+					<script-binding />
 				</options>
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>pitch_down</key>
+				<key>DJCi500.pitchDownSemiTone</key>
 				<description>Pitch down - semitone</description>
 				<status>0x97</status>
 				<midino>0x41</midino>
 				<options>
-					<normal/>
+					<script-binding />
 				</options>
 			</control>
 			<control>

@@ -52,6 +52,7 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 
         problema: se il loop non inizia sull'1. --> convertire.
         problema: talvolta non funziona, al momento non c'è il -8
+        se premo più volte non funziona
 
 
 25: implement rewind
@@ -70,3 +71,7 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 32: colori: sistemare che siano attivi (aka disattivi) di base??
     beatroll cambiare colore
     group 5: 02/03 12/1F 76/74(118/116) 72/70 (114/112) --> this is wrong need to check colors on original excel
+
+33: change sampler with beatjump?? (30-38 vs 70-78s)
+
+34: pad 6 = fx effects

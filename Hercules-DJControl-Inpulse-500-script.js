@@ -149,6 +149,16 @@ DJCi500.init = function() {
     // the corresponding GUI controls in MIXXX.
     midi.sendShortMsg(0xB0, 0x7F, 0x7F);
 
+    //Turn on lights:
+    for (var i = 0; i < 2; i++) {
+        midi.sendShortMsg(0x96+i, 0x40, 0x2);
+        midi.sendShortMsg(0x96+i, 0x41, 0x2);
+        midi.sendShortMsg(0x96+i, 0x42, 0x78);
+        midi.sendShortMsg(0x96+i, 0x43, 0x78);
+        midi.sendShortMsg(0x96+i, 0x45, 0x37);
+        midi.sendShortMsg(0x96+i, 0x46, 0x24);
+    }
+
     DJCi500.FxLedtimer = engine.beginTimer(250,"DJCi500.blinkFxLed()");
 };
 
@@ -690,13 +700,46 @@ DJCi500.pitchUpTone = function (channel, control, value, status, group) {
     if (value == 0x7F){
         engine.setValue(group, "pitch_up", 1);
         engine.setValue(group, "pitch_up", 1);
-        //midi.sendShortMsg((, 0x20+i, active);
+        midi.sendShortMsg(status, control, 0x70); //104 //68
+    }
+    else {
+        midi.sendShortMsg(status, control, 0x78); //36 //24
     }
 };
 DJCi500.pitchDownTone = function (channel, control, value, status, group) {
     if (value == 0x7F){
         engine.setValue(group, "pitch_down", 1);
         engine.setValue(group, "pitch_down", 1);
+        midi.sendShortMsg(status, control, 0x3);
+    }
+    else {
+        midi.sendShortMsg(status, control, 0x2);
+    }
+};
+DJCi500.pitchUpSemiTone = function (channel, control, value, status, group) {
+    if (value == 0x7F){
+        engine.setValue(group, "pitch_up", 1);
+        midi.sendShortMsg(status, control, 0x70); //120
+    }
+    else {
+        midi.sendShortMsg(status, control, 0x78); //78 //4C
+    }
+};
+DJCi500.pitchDownSemiTone = function (channel, control, value, status, group) {
+    if (value == 0x7F){
+        engine.setValue(group, "pitch_down", 1);
+        midi.sendShortMsg(status, control, 0x3); //104
+    }
+    else {
+        midi.sendShortMsg(status, control, 0x2); //36
+    }
+};
+
+var colortest = 0x0;
+DJCi500.TestColor = function (channel, control, value, status, group) {
+    if (value == 0x7F){
+        colortest += 1;
+        midi.sendShortMsg(0x96, 0x44, colortest);
     }
 };
 
@@ -717,6 +760,11 @@ DJCi500.pitchSliderIncrease = function (channel, control, value, status, group) 
             DJCi500.pitchRangesId[deck] = 2;
         }
         engine.setValue(group, "rateRange", DJCi500.pitchRanges[DJCi500.pitchRangesId[deck]]);
+
+        midi.sendShortMsg(status, control, 0x68); //104
+    }
+    else {
+        midi.sendShortMsg(status, control, 0x24); //36
     }
 };
 DJCi500.pitchSliderDecrease = function (channel, control, value, status, group) {
@@ -736,6 +784,10 @@ DJCi500.pitchSliderDecrease = function (channel, control, value, status, group) 
             DJCi500.pitchRangesId[deck] = 0;
         }
         engine.setValue(group, "rateRange", DJCi500.pitchRanges[DJCi500.pitchRangesId[deck]]);
+        midi.sendShortMsg(status, control, 0x3F); //17 -- 3B
+    }
+    else {
+        midi.sendShortMsg(status, control, 0x37); //3B -- 33
     }
 };
 DJCi500.pitchSliderReset = function (channel, control, value, status, group) {
