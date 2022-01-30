@@ -75,3 +75,5 @@ done:          A: when fx4=0 (default) Fx1-3 flip the state. It's ok but not whe
 33: change sampler with beatjump?? (30-38 vs 70-78s)
 
 34: pad 6 = fx effects
+
+35: Put all pads and pad lights into script... so much better.

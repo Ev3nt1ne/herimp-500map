@@ -4,6 +4,14 @@
 	Fixed play while cueing
 	Changed The FX knob from Dry/wet to SuperKnob(aka intensity) like Serato
 	Added MoveHorizontal with Shift+browser (Bentheshrubber)
+	Added Leds pad 5
+		minor: moved pitch_up into script
+	Moved back BeatJump to Pad4 and Sampler to Pad8 (imho better to reach
+		beatjump faster, since I'm not using sampler that much). Anyway I left
+		the other configuration commented out so it's faster to move from one to
+		the other
+	BeatJump: added also x16 x32 x64 with the shift. Updated also Leds. (present 
+		only in the pad4 version)
 
 
 6:

@@ -761,7 +761,7 @@ DJCi500.pitchSliderIncrease = function (channel, control, value, status, group) 
         }
         engine.setValue(group, "rateRange", DJCi500.pitchRanges[DJCi500.pitchRangesId[deck]]);
 
-        midi.sendShortMsg(status, control, 0x68); //104
+        midi.sendShortMsg(status, control, 0x64); //68(104)
     }
     else {
         midi.sendShortMsg(status, control, 0x24); //36
