@@ -85,10 +85,10 @@ DJCi500.activeSlicerMode = [
 DJCi500.slicerLoopBeat8 = [0, 0, 0, 0];
 ///////////////////////
 
-DJCi500.vuMeterUpdateMaster = function(value, _group, _control) {
+DJCi500.vuMeterUpdateMaster = function(value, _group, control) {
     value = (value * 122) + 5;
-    midi.sendShortMsg(0xB0, 0x40, value);
-    midi.sendShortMsg(0xB0, 0x41, value);
+    var control = (control === "VuMeterL") ? 0x40 : 0x41;
+    midi.sendShortMsg(0xB0, control, value);
 };
 
 DJCi500.vuMeterUpdateDeck = function(value, group, _control, _status) {
@@ -129,7 +129,7 @@ DJCi500.init = function() {
 
 	engine.getValue("[Master]", "VuMeterL", "DJCi500.vuMeterUpdateMaster");
     engine.getValue("[Master]", "VuMeterR", "DJCi500.vuMeterUpdateMaster");
-	engine.getValue("[Controls]", "AutoHotcueColors", "DJCi500.AutoHotcueColors");
+	//sengine.getValue("[Controls]", "AutoHotcueColors", "DJCi500.AutoHotcueColors");
 
     //Ev3nt1ne Code
     var fx1D1Connection = engine.makeConnection('[EffectRack1_EffectUnit1_Effect1]', 'enabled', DJCi500.fx1D1Callback);

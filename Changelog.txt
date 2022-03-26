@@ -1,4 +1,8 @@
 
+8:
+	Fixed Master vuMeters (Bentheshrubber)
+
+
 7:
 	Added BeatAlign and Tempo OK
 	Fixed play while cueing
@@ -10,9 +14,8 @@
 		beatjump faster, since I'm not using sampler that much). Anyway I left
 		the other configuration commented out so it's faster to move from one to
 		the other
-	BeatJump: added also x16 x32 x64 with the shift. Updated also Leds. (present 
+	BeatJump: added also x16 x32 x64 with the shift. Updated also Leds. (present
 		only in the pad4 version)
-
 
 6:
 	small fixes for beatmatch.
