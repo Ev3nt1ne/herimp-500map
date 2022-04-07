@@ -680,7 +680,7 @@
 			<control>
 				<group>[Channel1]</group>
 				<key>hotcue_1_clear</key>
-				<description>PAD 1</description>
+				<description>PAD 1 + L-Shift</description>
 				<status>0x96</status>
 				<midino>0x08</midino>
 				<options>
@@ -690,7 +690,7 @@
 			<control>
 				<group>[Channel1]</group>
 				<key>hotcue_2_clear</key>
-				<description>PAD 2</description>
+				<description>PAD 2 + L-Shift</description>
 				<status>0x96</status>
 				<midino>0x09</midino>
 				<options>
@@ -700,7 +700,7 @@
 			<control>
 				<group>[Channel1]</group>
 				<key>hotcue_3_clear</key>
-				<description>PAD 3</description>
+				<description>PAD 3 + L-Shift</description>
 				<status>0x96</status>
 				<midino>0x0A</midino>
 				<options>
@@ -710,7 +710,7 @@
 			<control>
 				<group>[Channel1]</group>
 				<key>hotcue_4_clear</key>
-				<description>PAD 4</description>
+				<description>PAD 4 + L-Shift</description>
 				<status>0x96</status>
 				<midino>0x0B</midino>
 				<options>
@@ -720,7 +720,7 @@
 			<control>
 				<group>[Channel1]</group>
 				<key>hotcue_5_clear</key>
-				<description>PAD 5</description>
+				<description>PAD 5 + L-Shift</description>
 				<status>0x96</status>
 				<midino>0x0C</midino>
 				<options>
@@ -730,7 +730,7 @@
 			<control>
 				<group>[Channel1]</group>
 				<key>hotcue_6_clear</key>
-				<description>PAD 6</description>
+				<description>PAD 6 + L-Shift</description>
 				<status>0x96</status>
 				<midino>0x0D</midino>
 				<options>
@@ -740,7 +740,7 @@
 			<control>
 				<group>[Channel1]</group>
 				<key>hotcue_7_clear</key>
-				<description>PAD 7</description>
+				<description>PAD 7 + L-Shift</description>
 				<status>0x96</status>
 				<midino>0x0E</midino>
 				<options>
@@ -750,7 +750,7 @@
 			<control>
 				<group>[Channel1]</group>
 				<key>hotcue_8_clear</key>
-				<description>PAD 8</description>
+				<description>PAD 8 + L-Shift</description>
 				<status>0x96</status>
 				<midino>0x0F</midino>
 				<options>
@@ -1768,7 +1768,7 @@
 			<control>
 				<group>[Channel2]</group>
 				<key>hotcue_1_clear</key>
-				<description>PAD 1</description>
+				<description>PAD 1 + R-Shift</description>
 				<status>0x97</status>
 				<midino>0x08</midino>
 				<options>
@@ -1778,7 +1778,7 @@
 			<control>
 				<group>[Channel2]</group>
 				<key>hotcue_2_clear</key>
-				<description>PAD 2</description>
+				<description>PAD 2 + R-Shift</description>
 				<status>0x97</status>
 				<midino>0x09</midino>
 				<options>
@@ -1788,7 +1788,7 @@
 			<control>
 				<group>[Channel2]</group>
 				<key>hotcue_3_clear</key>
-				<description>PAD 3</description>
+				<description>PAD 3 + R-Shift</description>
 				<status>0x97</status>
 				<midino>0x0A</midino>
 				<options>
@@ -1798,7 +1798,7 @@
 			<control>
 				<group>[Channel2]</group>
 				<key>hotcue_4_clear</key>
-				<description>PAD 4</description>
+				<description>PAD 4 + R-Shift</description>
 				<status>0x97</status>
 				<midino>0x0B</midino>
 				<options>
@@ -1808,7 +1808,7 @@
 			<control>
 				<group>[Channel2]</group>
 				<key>hotcue_5_clear</key>
-				<description>PAD 5</description>
+				<description>PAD 5 + R-Shift</description>
 				<status>0x97</status>
 				<midino>0x0C</midino>
 				<options>
@@ -1818,7 +1818,7 @@
 			<control>
 				<group>[Channel2]</group>
 				<key>hotcue_6_clear</key>
-				<description>PAD 6</description>
+				<description>PAD 6 + R-Shift</description>
 				<status>0x97</status>
 				<midino>0x0D</midino>
 				<options>
@@ -1828,7 +1828,7 @@
 			<control>
 				<group>[Channel2]</group>
 				<key>hotcue_7_clear</key>
-				<description>PAD 7</description>
+				<description>PAD 7 + R-Shift</description>
 				<status>0x97</status>
 				<midino>0x0E</midino>
 				<options>
@@ -1838,7 +1838,7 @@
 			<control>
 				<group>[Channel2]</group>
 				<key>hotcue_8_clear</key>
-				<description>PAD 8</description>
+				<description>PAD 8 + R-Shift</description>
 				<status>0x97</status>
 				<midino>0x0F</midino>
 				<options>
@@ -3686,7 +3686,7 @@
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_1_enabled</key>
-				<description>Hotcue 1 (Pad 1)</description>
+				<description>Hotcue 1 (Pad 1 + L-Shift)</description>
 				<status>0x96</status>
 				<midino>0x08</midino>
 				<on>0x60</on>
@@ -3696,7 +3696,7 @@
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_2_enabled</key>
-				<description>Hotcue 2 (Pad 2)</description>
+				<description>Hotcue 2 (Pad 2 + L-Shift)</description>
 				<status>0x96</status>
 				<midino>0x09</midino>
 				<on>0x1C</on>
@@ -3706,7 +3706,7 @@
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_3_enabled</key>
-				<description>Hotcue 3 (Pad 3)</description>
+				<description>Hotcue 3 (Pad 3 + L-Shift)</description>
 				<status>0x96</status>
 				<midino>0x0A</midino>
 				<on>0x1F</on>
@@ -3716,7 +3716,7 @@
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_4_enabled</key>
-				<description>Hotcue 4 (Pad 4)</description>
+				<description>Hotcue 4 (Pad 4 + L-Shift)</description>
 				<status>0x96</status>
 				<midino>0x0B</midino>
 				<on>0x7C</on>
@@ -3726,7 +3726,7 @@
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_5_enabled</key>
-				<description>Hotcue 5 (Pad 5)</description>
+				<description>Hotcue 5 (Pad 5 + L-Shift)</description>
 				<status>0x96</status>
 				<midino>0x0C</midino>
 				<on>0x03</on>
@@ -3736,7 +3736,7 @@
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_6_enabled</key>
-				<description>Hotcue 6 (Pad 6)</description>
+				<description>Hotcue 6 (Pad 6 + L-Shift)</description>
 				<status>0x96</status>
 				<midino>0x0D</midino>
 				<on>0x63</on>
@@ -3746,7 +3746,7 @@
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_7_enabled</key>
-				<description>Hotcue 7 (Pad 7)</description>
+				<description>Hotcue 7 (Pad 7 + L-Shift)</description>
 				<status>0x96</status>
 				<midino>0x0E</midino>
 				<on>0x73</on>
@@ -3756,7 +3756,7 @@
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_8_enabled</key>
-				<description>Hotcue 8 (Pad 8)</description>
+				<description>Hotcue 8 (Pad 8 + L-Shift)</description>
 				<status>0x96</status>
 				<midino>0x0F</midino>
 				<on>0x7F</on>
@@ -3766,7 +3766,7 @@
 			<output>
 				<group>[Channel2]</group>
 				<key>hotcue_1_enabled</key>
-				<description>Hotcue 1 (Pad 1)</description>
+				<description>Hotcue 1 (Pad 1 + R-Shift)</description>
 				<status>0x97</status>
 				<midino>0x08</midino>
 				<on>0x60</on>
@@ -3776,7 +3776,7 @@
 			<output>
 				<group>[Channel2]</group>
 				<key>hotcue_2_enabled</key>
-				<description>Hotcue 2 (Pad 2)</description>
+				<description>Hotcue 2 (Pad 2 + R-Shift)</description>
 				<status>0x97</status>
 				<midino>0x09</midino>
 				<on>0x1C</on>
@@ -3786,7 +3786,7 @@
 			<output>
 				<group>[Channel2]</group>
 				<key>hotcue_3_enabled</key>
-				<description>Hotcue 3 (Pad 3)</description>
+				<description>Hotcue 3 (Pad 3 + R-Shift)</description>
 				<status>0x97</status>
 				<midino>0x0A</midino>
 				<on>0x1F</on>
@@ -3796,7 +3796,7 @@
 			<output>
 				<group>[Channel2]</group>
 				<key>hotcue_4_enabled</key>
-				<description>Hotcue 4 (Pad 4)</description>
+				<description>Hotcue 4 (Pad 4 + R-Shift)</description>
 				<status>0x97</status>
 				<midino>0x0B</midino>
 				<on>0x7C</on>
@@ -3806,7 +3806,7 @@
 			<output>
 				<group>[Channel2]</group>
 				<key>hotcue_5_enabled</key>
-				<description>Hotcue 5 (Pad 5)</description>
+				<description>Hotcue 5 (Pad 5 + R-Shift)</description>
 				<status>0x97</status>
 				<midino>0x0C</midino>
 				<on>0x03</on>
@@ -3816,7 +3816,7 @@
 			<output>
 				<group>[Channel2]</group>
 				<key>hotcue_6_enabled</key>
-				<description>Hotcue 6 (Pad 6)</description>
+				<description>Hotcue 6 (Pad 6 + R-Shift)</description>
 				<status>0x97</status>
 				<midino>0x0D</midino>
 				<on>0x63</on>
@@ -3826,7 +3826,7 @@
 			<output>
 				<group>[Channel2]</group>
 				<key>hotcue_7_enabled</key>
-				<description>Hotcue 7 (Pad 7)</description>
+				<description>Hotcue 7 (Pad 7 + R-Shift)</description>
 				<status>0x97</status>
 				<midino>0x0E</midino>
 				<on>0x73</on>
@@ -3836,7 +3836,7 @@
 			<output>
 				<group>[Channel2]</group>
 				<key>hotcue_8_enabled</key>
-				<description>Hotcue 8 (Pad 8)</description>
+				<description>Hotcue 8 (Pad 8 + R-Shift)</description>
 				<status>0x97</status>
 				<midino>0x0F</midino>
 				<on>0x7F</on>
