@@ -1070,5 +1070,6 @@ DJCi500.shutdown = function() {
     //var controlsToFunctions = {'beat_active': 'DJCi500.slicerBeatActive'}
     //script.bindConnections('[Channel1]', controlsToFunctions, false);
 
+    midi.sendShortMsg(0x90, 0x05, 0x00); //turn browser led off
 	midi.sendShortMsg(0xB0, 0x7F, 0x7E);
 };
