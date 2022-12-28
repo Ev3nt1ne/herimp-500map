@@ -252,7 +252,7 @@ DJCi500.crossfaderSetCurve = function(channel, control, value, _status, _group) 
             break;
         case 0x7F:
             // Scratch
-            script.crossfaderCurve(0,0,1);
+            script.crossfaderCurve(127,0,127);
             DJCi500.xFaderScratch = 1;
             break;
     }
@@ -269,16 +269,25 @@ DJCi500.crossfaderEnable = function(channel, control, value, _status, _group) {
 // Crossfader function
 DJCi500.crossfader = function(channel, control, value, status, group) {
     if (DJCi500.crossfaderEnabled) {
-
         //hotfix:
         if (DJCi500.xFaderScratch) {
-            var result = (Math.atan((value -63)/1) )/(Math.PI/2);
+            //var result = (Math.atan((value -63)/1) )/(Math.PI/2);
+            var result = 0;
+            if (value <= 0)
+            {
+                result = -1;
+            } else if (value >= 127)
+            {
+                result = 1;
+            }
+            else {
+                result = Math.tan((value-64)*Math.PI/2/63)/32;
+            }
             engine.setValue(group, "crossfader", result);
         }
         else {
             engine.setValue(group, "crossfader", (value/64)-1);
         }
-
     }
 }
 // Browser button. We move it to a custom JS function to avoid having to focus the Mixxx window for it to respond

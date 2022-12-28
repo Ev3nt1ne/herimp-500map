@@ -3,13 +3,15 @@
 	Integrated changes from resetreboot
 		1 vumeter update is bugged, restored old
 		2 hotcue colors added (nice job!)
-		3 fixed the crossfader curve, added personalized arctangent function
+		3 fixed the crossfader curve, added personalized tangent function
 		4 no idea why beatsync on the loop button, when we already have it in the sync button, restored old
 		5 fixed beatloop functions and led
 		6 changed looprolls leds
 		7 tested the browsing library feature, but It was broken and I restored the old one
 	Other Fixes:
-		
+	 - Fixed In and Out loop behavior. Long presing them is the same feature as wheel in Serato
+	 - added shift+push, shift+in and shift+out.
+
 
 8:
 	Fixed Master vuMeters (Bentheshrubber)
