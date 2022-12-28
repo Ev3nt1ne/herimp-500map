@@ -1,11 +1,9 @@
-1 your vumeter update is bugged, mine works
-2 hotcue added, nice job
-3 fixed the crossfader curve
-
-
 
 
 
 
  - long press load
- 	- load the same song at the same point
+ 	- load the same song at the same point --> it's already double press
+
+ - in/out fix
+ - scratch wheel fix

@@ -29,6 +29,42 @@
 				</options>
 			</control>
 
+			<!--Browser encoder-->
+			<!-- From the other guy, broken
+			<control>
+				<group>[Library]</group>
+				<key>DJCi500.moveLibrary</key>
+				<description>Move Vertical (Browser Knob)</description>
+				<status>0xB0</status>
+				<midino>0x01</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
+			-->
+
+			<!--Browser encoder-->
+			<control>
+				<group>[Library]</group>
+				<key>MoveVertical</key>
+				<description>Move Vertical (Browser Knob)</description>
+				<status>0xB0</status>
+				<midino>0x01</midino>
+				<options>
+					<selectknob />
+				</options>
+			</control>
+			<control>
+				<group>[Library]</group>
+				<key>MoveHorizontal</key>
+				<description>Move Horizontal (Browser Knob)</description>
+				<status>0xB3</status>
+				<midino>0x01</midino>
+				<options>
+					<selectknob />
+				</options>
+			</control>
+
 			<!--Assistant-->
 			<control>
 				<group>[AutoDJ]</group>
@@ -760,7 +796,7 @@
 			<!--Pad MODE 2 - Loop-->
 			<control>
 				<group>[Channel1]</group>
-				<key>beatlooproll_0.125_activate</key>
+				<key>beatloop_0.125_toggle</key>
 				<description>Loop 1/8 Beat (Pad 1)</description>
 				<status>0x96</status>
 				<midino>0x10</midino>
@@ -770,7 +806,7 @@
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatlooproll_0.25_activate</key>
+				<key>beatloop_0.25_toggle</key>
 				<description>Loop 1/4 Beat (Pad 2)</description>
 				<status>0x96</status>
 				<midino>0x11</midino>
@@ -780,7 +816,7 @@
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatlooproll_0.5_activate</key>
+				<key>beatloop_0.5_toggle</key>
 				<description>Loop 1/2 Beat (Pad 3)</description>
 				<status>0x96</status>
 				<midino>0x12</midino>
@@ -790,7 +826,7 @@
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatlooproll_1_activate</key>
+				<key>beatloop_1_toggle</key>
 				<description>Loop 1 Beat (Pad 4)</description>
 				<status>0x96</status>
 				<midino>0x13</midino>
@@ -800,7 +836,7 @@
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatlooproll_2_activate</key>
+				<key>beatloop_2_toggle</key>
 				<description>Loop 2 Beat (Pad 5)</description>
 				<status>0x96</status>
 				<midino>0x14</midino>
@@ -810,7 +846,7 @@
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatlooproll_4_activate</key>
+				<key>beatloop_4_toggle</key>
 				<description>Loop 2 Beat (Pad 6)</description>
 				<status>0x96</status>
 				<midino>0x15</midino>
@@ -820,7 +856,7 @@
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatlooproll_8_activate</key>
+				<key>beatloop_8_toggle</key>
 				<description>Loop 8 Beat (Pad 7)</description>
 				<status>0x96</status>
 				<midino>0x16</midino>
@@ -830,7 +866,7 @@
 			</control>
 			<control>
 				<group>[Channel1]</group>
-				<key>beatlooproll_16_activate</key>
+				<key>beatloop_16_toggle</key>
 				<description>Loop 2 Beat (Pad 8)</description>
 				<status>0x96</status>
 				<midino>0x17</midino>
@@ -1348,7 +1384,88 @@
 				</options>
 			</control>
 
-			<!--Pad MODE 6 - Not assigned: 0x50 to 0x57-->
+			<!--Pad MODE 6 - LoopRolls-->
+			<control>
+				<group>[Channel1]</group>
+				<key>beatlooproll_0.125_activate</key>
+				<description>Loop 1/8 Beat (Pad 1)</description>
+				<status>0x96</status>
+				<midino>0x50</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatlooproll_0.25_activate</key>
+				<description>Loop 1/4 Beat (Pad 2)</description>
+				<status>0x96</status>
+				<midino>0x51</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatlooproll_0.5_activate</key>
+				<description>Loop 1/2 Beat (Pad 3)</description>
+				<status>0x96</status>
+				<midino>0x52</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatlooproll_1_activate</key>
+				<description>Loop 1 Beat (Pad 4)</description>
+				<status>0x96</status>
+				<midino>0x53</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatlooproll_2_activate</key>
+				<description>Loop 2 Beat (Pad 5)</description>
+				<status>0x96</status>
+				<midino>0x54</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatlooproll_4_activate</key>
+				<description>Loop 2 Beat (Pad 6)</description>
+				<status>0x96</status>
+				<midino>0x55</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatlooproll_8_activate</key>
+				<description>Loop 8 Beat (Pad 7)</description>
+				<status>0x96</status>
+				<midino>0x56</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel1]</group>
+				<key>beatlooproll_16_activate</key>
+				<description>Loop 2 Beat (Pad 8)</description>
+				<status>0x96</status>
+				<midino>0x57</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+
 			<!--Pad MODE 7 - Not assigned: 0x60 to 0x67-->
 
 			<!--Pad MODE 8 - Sampler-->
@@ -1848,7 +1965,7 @@
 			<!--Pad MODE 2 - Loop-->
 			<control>
 				<group>[Channel2]</group>
-				<key>beatlooproll_0.125_activate</key>
+				<key>beatloop_0.125_toggle</key>
 				<description>Loop 1/8 Beat (Pad 1)</description>
 				<status>0x97</status>
 				<midino>0x10</midino>
@@ -1858,7 +1975,7 @@
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatlooproll_0.25_activate</key>
+				<key>beatloop_0.25_toggle</key>
 				<description>Loop 1/4 Beat (Pad 2)</description>
 				<status>0x97</status>
 				<midino>0x11</midino>
@@ -1868,7 +1985,7 @@
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatlooproll_0.5_activate</key>
+				<key>beatloop_0.5_toggle</key>
 				<description>Loop 1/2 Beat (Pad 3)</description>
 				<status>0x97</status>
 				<midino>0x12</midino>
@@ -1878,7 +1995,7 @@
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatlooproll_1_activate</key>
+				<key>beatloop_1_toggle</key>
 				<description>Loop 1 Beat (Pad 4)</description>
 				<status>0x97</status>
 				<midino>0x13</midino>
@@ -1888,7 +2005,7 @@
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatlooproll_2_activate</key>
+				<key>beatloop_2_toggle</key>
 				<description>Loop 2 Beat (Pad 5)</description>
 				<status>0x97</status>
 				<midino>0x14</midino>
@@ -1898,7 +2015,7 @@
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatlooproll_4_activate</key>
+				<key>beatloop_4_toggle</key>
 				<description>Loop 2 Beat (Pad 6)</description>
 				<status>0x97</status>
 				<midino>0x15</midino>
@@ -1908,7 +2025,7 @@
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatlooproll_8_activate</key>
+				<key>beatloop_8_toggle</key>
 				<description>Loop 8 Beat (Pad 7)</description>
 				<status>0x97</status>
 				<midino>0x16</midino>
@@ -1918,7 +2035,7 @@
 			</control>
 			<control>
 				<group>[Channel2]</group>
-				<key>beatlooproll_16_activate</key>
+				<key>beatloop_16_toggle</key>
 				<description>Loop 2 Beat (Pad 8)</description>
 				<status>0x97</status>
 				<midino>0x17</midino>
@@ -2444,7 +2561,88 @@
 					<script-binding />
 				</options>
 			</control>
-			<!--Pad MODE 6  Not assigned: 0x50 to 0x57-->
+			<!--Pad MODE 6  LoopRolls-->
+			<control>
+				<group>[Channel2]</group>
+				<key>beatlooproll_0.125_activate</key>
+				<description>Loop 1/8 Beat (Pad 1)</description>
+				<status>0x97</status>
+				<midino>0x50</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatlooproll_0.25_activate</key>
+				<description>Loop 1/4 Beat (Pad 2)</description>
+				<status>0x97</status>
+				<midino>0x51</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatlooproll_0.5_activate</key>
+				<description>Loop 1/2 Beat (Pad 3)</description>
+				<status>0x97</status>
+				<midino>0x52</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatlooproll_1_activate</key>
+				<description>Loop 1 Beat (Pad 4)</description>
+				<status>0x97</status>
+				<midino>0x53</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatlooproll_2_activate</key>
+				<description>Loop 2 Beat (Pad 5)</description>
+				<status>0x97</status>
+				<midino>0x54</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatlooproll_4_activate</key>
+				<description>Loop 2 Beat (Pad 6)</description>
+				<status>0x97</status>
+				<midino>0x55</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatlooproll_8_activate</key>
+				<description>Loop 8 Beat (Pad 7)</description>
+				<status>0x97</status>
+				<midino>0x56</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+			<control>
+				<group>[Channel2]</group>
+				<key>beatlooproll_16_activate</key>
+				<description>Loop 2 Beat (Pad 8)</description>
+				<status>0x97</status>
+				<midino>0x57</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+
 			<!--Pad MODE 7  Not assigned: 0x60 to 0x67-->
 
 			<!--Pad MODE 8 - Sampler-->
@@ -2731,27 +2929,7 @@
 					<script-binding />
 				</options>
 			</control>
-			<!--Browser encoder-->
-			<control>
-				<group>[Library]</group>
-				<key>MoveVertical</key>
-				<description>Move Vertical (Browser Knob)</description>
-				<status>0xB0</status>
-				<midino>0x01</midino>
-				<options>
-					<selectknob />
-				</options>
-			</control>
-			<control>
-				<group>[Library]</group>
-				<key>MoveHorizontal</key>
-				<description>Move Horizontal (Browser Knob)</description>
-				<status>0xB3</status>
-				<midino>0x01</midino>
-				<options>
-					<selectknob />
-				</options>
-			</control>
+
 
 			<!-- CC's MIDI Channel 2 (0xB1 Deck A - Standard mode)-->
 
@@ -3874,6 +4052,168 @@
 				<key>beatlooproll_0.125_activate</key>
 				<description>Loop 1/8 Beat (Pad 1)</description>
 				<status>0x96</status>
+				<midino>0x50</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel1]</group>
+				<key>beatlooproll_0.25_activate</key>
+				<description>Loop 1/4 Beat (Pad 2)</description>
+				<status>0x96</status>
+				<midino>0x51</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel1]</group>
+				<key>beatlooproll_0.5_activate</key>
+				<description>Loop 1/2 Beat (Pad 3)</description>
+				<status>0x96</status>
+				<midino>0x52</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel1]</group>
+				<key>beatlooproll_1_activate</key>
+				<description>Loop 1 Beat (Pad 4)</description>
+				<status>0x96</status>
+				<midino>0x53</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel1]</group>
+				<key>beatlooproll_2_activate</key>
+				<description>Loop 2 Beat (Pad 5)</description>
+				<status>0x96</status>
+				<midino>0x54</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel1]</group>
+				<key>beatlooproll_4_activate</key>
+				<description>Loop 4 Beat (Pad 6)</description>
+				<status>0x96</status>
+				<midino>0x55</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel1]</group>
+				<key>beatlooproll_8_activate</key>
+				<description>Loop 8 Beat (Pad 7)</description>
+				<status>0x96</status>
+				<midino>0x56</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel1]</group>
+				<key>beatlooproll_16_activate</key>
+				<description>Loop 16 Beat (Pad 8)</description>
+				<status>0x96</status>
+				<midino>0x57</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel2]</group>
+				<key>beatlooproll_0.125_activate</key>
+				<description>Loop 1/8 Beat (Pad 1)</description>
+				<status>0x97</status>
+				<midino>0x50</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel2]</group>
+				<key>beatlooproll_0.25_activate</key>
+				<description>Loop 1/4 Beat (Pad 2)</description>
+				<status>0x97</status>
+				<midino>0x51</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel2]</group>
+				<key>beatlooproll_0.5_activate</key>
+				<description>Loop 1/2 Beat (Pad 3)</description>
+				<status>0x97</status>
+				<midino>0x52</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel2]</group>
+				<key>beatlooproll_1_activate</key>
+				<description>Loop 1 Beat (Pad 4)</description>
+				<status>0x97</status>
+				<midino>0x53</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel2]</group>
+				<key>beatlooproll_2_activate</key>
+				<description>Loop 2 Beat (Pad 5)</description>
+				<status>0x97</status>
+				<midino>0x54</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel2]</group>
+				<key>beatlooproll_4_activate</key>
+				<description>Loop 4 Beat (Pad 6)</description>
+				<status>0x97</status>
+				<midino>0x55</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel2]</group>
+				<key>beatlooproll_8_activate</key>
+				<description>Loop 8 Beat (Pad 7)</description>
+				<status>0x97</status>
+				<midino>0x56</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+			<output>
+				<group>[Channel2]</group>
+				<key>beatlooproll_16_activate</key>
+				<description>Loop 16 Beat (Pad 8)</description>
+				<status>0x97</status>
+				<midino>0x57</midino>
+				<on>0x5c</on>
+				<off>0x30</off>
+				<minimum>0.5</minimum>
+			</output>
+
+			<!--LED Loop-->
+			<output>
+				<group>[Channel1]</group>
+				<key>beatloop_0.125_enabled</key>
+				<description>Loop 1/8 Beat (Pad 1)</description>
+				<status>0x96</status>
 				<midino>0x10</midino>
 				<on>0x1C</on>
 				<off>0x08</off>
@@ -3881,7 +4221,7 @@
 			</output>
 			<output>
 				<group>[Channel1]</group>
-				<key>beatlooproll_0.25_activate</key>
+				<key>beatloop_0.25_enabled</key>
 				<description>Loop 1/4 Beat (Pad 2)</description>
 				<status>0x96</status>
 				<midino>0x11</midino>
@@ -3891,7 +4231,7 @@
 			</output>
 			<output>
 				<group>[Channel1]</group>
-				<key>beatlooproll_0.5_activate</key>
+				<key>beatloop_0.5_enabled</key>
 				<description>Loop 1/2 Beat (Pad 3)</description>
 				<status>0x96</status>
 				<midino>0x12</midino>
@@ -3901,7 +4241,7 @@
 			</output>
 			<output>
 				<group>[Channel1]</group>
-				<key>beatlooproll_1_activate</key>
+				<key>beatloop_1_enabled</key>
 				<description>Loop 1 Beat (Pad 4)</description>
 				<status>0x96</status>
 				<midino>0x13</midino>
@@ -3911,7 +4251,7 @@
 			</output>
 			<output>
 				<group>[Channel1]</group>
-				<key>beatlooproll_2_activate</key>
+				<key>beatloop_2_enabled</key>
 				<description>Loop 2 Beat (Pad 5)</description>
 				<status>0x96</status>
 				<midino>0x14</midino>
@@ -3921,7 +4261,7 @@
 			</output>
 			<output>
 				<group>[Channel1]</group>
-				<key>beatlooproll_4_activate</key>
+				<key>beatloop_4_enabled</key>
 				<description>Loop 4 Beat (Pad 6)</description>
 				<status>0x96</status>
 				<midino>0x15</midino>
@@ -3931,7 +4271,7 @@
 			</output>
 			<output>
 				<group>[Channel1]</group>
-				<key>beatlooproll_8_activate</key>
+				<key>beatloop_8_enabled</key>
 				<description>Loop 8 Beat (Pad 7)</description>
 				<status>0x96</status>
 				<midino>0x16</midino>
@@ -3941,7 +4281,7 @@
 			</output>
 			<output>
 				<group>[Channel1]</group>
-				<key>beatlooproll_16_activate</key>
+				<key>beatloop_16_enabled</key>
 				<description>Loop 16 Beat (Pad 8)</description>
 				<status>0x96</status>
 				<midino>0x17</midino>
@@ -3951,7 +4291,7 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>beatlooproll_0.125_activate</key>
+				<key>beatloop_0.125_enabled</key>
 				<description>Loop 1/8 Beat (Pad 1)</description>
 				<status>0x97</status>
 				<midino>0x10</midino>
@@ -3961,7 +4301,7 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>beatlooproll_0.25_activate</key>
+				<key>beatloop_0.25_enabled</key>
 				<description>Loop 1/4 Beat (Pad 2)</description>
 				<status>0x97</status>
 				<midino>0x11</midino>
@@ -3971,7 +4311,7 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>beatlooproll_0.5_activate</key>
+				<key>beatloop_0.5_enabled</key>
 				<description>Loop 1/2 Beat (Pad 3)</description>
 				<status>0x97</status>
 				<midino>0x12</midino>
@@ -3981,7 +4321,7 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>beatlooproll_1_activate</key>
+				<key>beatloop_1_enabled</key>
 				<description>Loop 1 Beat (Pad 4)</description>
 				<status>0x97</status>
 				<midino>0x13</midino>
@@ -3991,7 +4331,7 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>beatlooproll_2_activate</key>
+				<key>beatloop_2_enabled</key>
 				<description>Loop 2 Beat (Pad 5)</description>
 				<status>0x97</status>
 				<midino>0x14</midino>
@@ -4001,7 +4341,7 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>beatlooproll_4_activate</key>
+				<key>beatloop_4_enabled</key>
 				<description>Loop 4 Beat (Pad 6)</description>
 				<status>0x97</status>
 				<midino>0x15</midino>
@@ -4011,7 +4351,7 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>beatlooproll_8_activate</key>
+				<key>beatloop_8_enabled</key>
 				<description>Loop 8 Beat (Pad 7)</description>
 				<status>0x97</status>
 				<midino>0x16</midino>
@@ -4021,7 +4361,7 @@
 			</output>
 			<output>
 				<group>[Channel2]</group>
-				<key>beatlooproll_16_activate</key>
+				<key>beatloop_16_enabled</key>
 				<description>Loop 16 Beat (Pad 8)</description>
 				<status>0x97</status>
 				<midino>0x17</midino>

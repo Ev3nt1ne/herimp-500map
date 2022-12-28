@@ -282,6 +282,7 @@ DJCi500.crossfader = function(channel, control, value, status, group) {
     }
 }
 // Browser button. We move it to a custom JS function to avoid having to focus the Mixxx window for it to respond
+/* broken
 DJCi500.moveLibrary = function(channel, control, value, status, group) {
     if (value > 0x3F) {
         engine.setValue('[Playlist]', 'SelectTrackKnob', -1);
@@ -289,7 +290,7 @@ DJCi500.moveLibrary = function(channel, control, value, status, group) {
         engine.setValue('[Playlist]', 'SelectTrackKnob', 1);
     }
 }
-
+*/
 
 // The Vinyl button, used to enable or disable scratching on the jog wheels (One per deck).
 

@@ -2,6 +2,25 @@ print("\n\r\n\r\n\r\n\r\n\r HERE \n\r\n\r\n\r\n\r");
 print("\n\r\n\r\n\r\n\r\n\r HERE \n\r\n\r\n\r\n\r");
 print("\n\r\n\r\n\r\n\r\n\r HERE \n\r\n\r\n\r\n\r");
 
+////
+
+
+<!--Browser encoder-->
+<control>
+	<group>[Library]</group>
+	<key>DJCi500.moveLibrary</key>
+	<description>Move Vertical (Browser Knob)</description>
+	<status>0xB0</status>
+	<midino>0x01</midino>
+	<options>
+		<script-binding />
+	</options>
+</control>
+
+
+
+
+/////////////////////////////////////77
 
 Different combination of colors:
 0x18 - 0x10
