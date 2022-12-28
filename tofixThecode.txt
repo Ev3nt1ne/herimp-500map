@@ -1,4 +1,11 @@
-1
-	
+1 your vumeter update is bugged, mine works
+2 hotcue added, nice job
+3 fixed the crossfader curve
 
-2
+
+
+
+
+
+ - long press load
+ 	- load the same song at the same point

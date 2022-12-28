@@ -2700,14 +2700,35 @@
 			<!-- CC's MIDI Channel 1 (0xB0 Standard mode)-->
 
 			<!--Crossfader-->
+			<!-- Crossfader control -->
+			<control>
+				<group>[Mixer Profile]</group>
+				<key>DJCi500.crossfaderEnable</key>
+				<description>CROSS FADER ENABLE</description>
+				<status>0x90</status>
+				<midino>0x18</midino>
+				<options>
+					<script-binding/>
+				</options>
+			</control>
+			<control>
+				<group>[Mixer Profile]</group>
+				<key>DJCi500.crossfaderSetCurve</key>
+				<description>CROSS FADER SET CURVE</description>
+				<status>0xB0</status>
+				<midino>0x0B</midino>
+				<options>
+					<script-binding/>
+				</options>
+			</control>
 			<control>
 				<group>[Master]</group>
-				<key>crossfader</key>
-				<description>Crossfader</description>
+				<key>DJCi500.crossfader</key>
+				<description>Crossfader analog</description>
 				<status>0xB0</status>
 				<midino>0x00</midino>
 				<options>
-					<normal />
+					<script-binding />
 				</options>
 			</control>
 			<!--Browser encoder-->
@@ -3522,6 +3543,7 @@
 			</output>
 			-->
 			<!--LED HOT CUE (Normal Mode)-->
+			<!--
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_1_enabled</key>
@@ -3682,7 +3704,9 @@
 				<off>0x52</off>
 				<minimum>0.5</minimum>
 			</output>
+			-->
 			<!--LED HOT CUE (SHIFT Mode)-->
+			<!--
 			<output>
 				<group>[Channel1]</group>
 				<key>hotcue_1_enabled</key>
@@ -3843,6 +3867,7 @@
 				<off>0x52</off>
 				<minimum>0.5</minimum>
 			</output>
+			-->
 			<!--LED Roll-->
 			<output>
 				<group>[Channel1]</group>

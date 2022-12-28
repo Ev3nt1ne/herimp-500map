@@ -83,6 +83,31 @@ DJCi500.activeSlicerMode = [
     DJCi500.slicerModes.contSlice
 ];
 DJCi500.slicerLoopBeat8 = [0, 0, 0, 0];
+
+// Colors
+DJCi500.PadColorMapper = new ColorMapper({
+    0xFF0000: 0x60,
+    0xFFFF00: 0x7C,
+    0x00FF00: 0x1C,
+    0x00FFFF: 0x1F,
+    0x0000FF: 0x03,
+    0xFF00FF: 0x42,
+    0xFF88FF: 0x63,
+    0xFFFFFF: 0x7F,
+    0x000088: 0x02,
+    0x008800: 0x10,
+    0x008888: 0x12,
+    0x228800: 0x30,
+    0x880000: 0x40,
+    0x882200: 0x4C,
+    0x888800: 0x50,
+    0x888888: 0x52,
+    0x88FF00: 0x5C,
+    0xFF8800: 0x74,
+});
+
+DJCi500.xFaderScratch = 0
+
 ///////////////////////
 
 DJCi500.vuMeterUpdateMaster = function(value, _group, control) {
@@ -108,12 +133,16 @@ DJCi500.init = function() {
 
 	DJCi500.AutoHotcueColors = true;
 
+    // Take care of the status of the crossfader status
+    DJCi500.crossfaderEnabled = true;
+
     // Turn On Vinyl buttons LED(one for each deck).
     midi.sendShortMsg(0x91, 0x03, 0x7F);
     midi.sendShortMsg(0x92, 0x03, 0x7F);
 	//Turn On Browser button LED
 	midi.sendShortMsg(0x90, 0x05, 0x10);
 	//Softtakeover for Pitch fader
+    //TODO: not working
     engine.softTakeover("[Channel1]", "rate", true);
     engine.softTakeover("[Channel2]", "rate", true);
     engine.softTakeoverIgnoreNextValue("[Channel1]", "rate");
@@ -159,8 +188,107 @@ DJCi500.init = function() {
         midi.sendShortMsg(0x96+i, 0x46, 0x24);
     }
 
+    // Bind the hotcue colors
+    DJCi500.enableHotcueColors();
+
     DJCi500.FxLedtimer = engine.beginTimer(250,"DJCi500.blinkFxLed()");
 };
+
+// Enable Hotcue colors
+DJCi500.enableHotcueColors = function () {
+    DJCi500.padsColor = {};
+    DJCi500.padsEnabled = {};
+    for (var channel = 1; channel <= 2; channel++) {
+        for (var i = 0; i <= 7; i++) {
+          DJCi500.padsColor[i + ((channel - 1) * 8)] = engine.makeConnection('[Channel' + channel +']', 'hotcue_' + (i + 1) + '_color', DJCi500.hotcueColorCallback);
+          DJCi500.padsEnabled[i + ((channel - 1) * 8)] = engine.makeConnection('[Channel' + channel +']', 'hotcue_' + (i + 1) + '_enabled', DJCi500.hotcueEnabledCallback);
+          // Make the default light gray, a dim white
+          midi.sendShortMsg(0x96 + (channel - 1), 0x00 + i, 0x52);
+          // Send the same color to the shifted cue button
+          midi.sendShortMsg(0x96 + (channel - 1), 0x08 + i, 0x52);
+        }
+    }
+}
+
+// Hotcue color callback
+// Setting it to gray or dim white as it is not used in Mixxx
+// color palette to identify a non-set hotcue
+DJCi500.hotcueColorCallback = function(value, group, control) {
+    var channel = parseInt(group.charAt(8)) - 1;
+    var cueButton = parseInt(control.split('_')[1]);
+
+    if (value !== -1) {
+        var color = DJCi500.PadColorMapper.getValueForNearestColor(value);
+        midi.sendShortMsg(0x96 + channel, cueButton - 1, color);
+        // Send the same color to the shifted cue button
+        midi.sendShortMsg(0x96 + channel, (cueButton - 1) + 8, color);
+    } else {
+        midi.sendShortMsg(0x96 + channel, cueButton - 1, 0x52);
+        // Send the same color to the shifted cue button
+        midi.sendShortMsg(0x96 + channel, (cueButton - 1) + 8, 0x52);
+    }
+}
+
+DJCi500.hotcueEnabledCallback = function(value, group, control) {
+    var channel = parseInt(group.charAt(8)) - 1;
+    var cueButton = parseInt(control.split('_')[1]);
+    if (value) {
+        var color = engine.getValue(group, "hotcue_" + cueButton + "_color");
+        var code = DJCi500.PadColorMapper.getValueForNearestColor(color);
+        midi.sendShortMsg(0x96 + channel, cueButton - 1, code);
+        midi.sendShortMsg(0x96 + channel, (cueButton - 1) + 8, code);
+    } else {
+        midi.sendShortMsg(0x96 + channel, cueButton - 1, 0x52);
+        midi.sendShortMsg(0x96 + channel, (cueButton - 1) + 8, 0x52);
+    }
+}
+// Crossfader control, set the curve
+DJCi500.crossfaderSetCurve = function(channel, control, value, _status, _group) {
+    switch(value) {
+        case 0x00:
+            // Mix
+            script.crossfaderCurve(0,0,127);
+            DJCi500.xFaderScratch = 0;
+            break;
+        case 0x7F:
+            // Scratch
+            script.crossfaderCurve(0,0,1);
+            DJCi500.xFaderScratch = 1;
+            break;
+    }
+}
+// Crossfader enable or disable
+DJCi500.crossfaderEnable = function(channel, control, value, _status, _group) {
+    if(value) {
+        DJCi500.crossfaderEnabled = true;
+    } else {
+        DJCi500.crossfaderEnabled = false;
+        engine.setValue("[Master]", "crossfader", 0);    // Set the crossfader in the middle
+    }
+}
+// Crossfader function
+DJCi500.crossfader = function(channel, control, value, status, group) {
+    if (DJCi500.crossfaderEnabled) {
+
+        //hotfix:
+        if (DJCi500.xFaderScratch) {
+            var result = (Math.atan((value -63)/1) )/(Math.PI/2);
+            engine.setValue(group, "crossfader", result);
+        }
+        else {
+            engine.setValue(group, "crossfader", (value/64)-1);
+        }
+
+    }
+}
+// Browser button. We move it to a custom JS function to avoid having to focus the Mixxx window for it to respond
+DJCi500.moveLibrary = function(channel, control, value, status, group) {
+    if (value > 0x3F) {
+        engine.setValue('[Playlist]', 'SelectTrackKnob', -1);
+    } else {
+        engine.setValue('[Playlist]', 'SelectTrackKnob', 1);
+    }
+}
 
 
 // The Vinyl button, used to enable or disable scratching on the jog wheels (One per deck).
