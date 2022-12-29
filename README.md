@@ -1,10 +1,12 @@
 # herimp-500map
 Mixxx: Hercules Impulse 500 mappings
 
-## Descrition
+## Description
 
 Only the buttons/knobs that are coded, and depend on Mixxx are presented.
-Others, such `Aux`, `Mic`, `Master`, and `HeadPhones` are not described, since they are hardware feature that do not depend on Mixxx.
+Others, such `Aux`, `Mic`, `Master`, and `HeadPhones` are not described, since they are hardware features that do not depend on Mixxx.
+
+### Global
 
 ![Global View](https://raw.githubusercontent.com/Ev3nt1ne/herimp-500map/main/other/global.jpg)
 Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.hercules.com)
@@ -25,10 +27,12 @@ Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.
  	- `Shift`: Mode FxDefault
  - `NRJ`: Toggle AutoDJ
 
+### Deck
+
 ![Deck View](https://raw.githubusercontent.com/Ev3nt1ne/herimp-500map/main/other/deck.jpg)
 Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.hercules.com)
 
- - `Vinyl`: Toggle Scratch on wheel
+ - `Vinyl`: Toggle Scratch on the wheel
  	- `Shift`: Toggle Slow Pause feature (fully implemented on mappings)
  - `Slip`: Slip Function
  	- `Shift`: /
@@ -45,7 +49,7 @@ Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.
  	- `Shift`: Move around (Scratch) with x4 speed
  - `Jog`: Bend (adjust phase)
  - `Loop Push`: Toggle Loop. If inactive and "behind" it will jump to it
- 	- `Shift`: Toggle a 4 bar loop
+ 	- `Shift`: Toggle a 4 bars loop
  - `Loop Enc`: Doubles/Halves loop duration
  - `In`: Select loop start
  	- `Shift`: go to loop start
@@ -54,10 +58,10 @@ Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.
  	- `Shift`: go to loop end
 	- `Long Press`: Move loop end with play cursor
  - `Sync`: Sync tempo with the other deck
- 	- `Shift`: Sync Key with other deck
+ 	- `Shift`: Sync Key with the other deck
 	- `Long Press`: Activate "linked tempo" feature
  - `Cue`: Cue
- 	- `Shift`: jump to start of the song //TODO: move to S+Play?
+ 	- `Shift`: jump to the start of the song //TODO: move to S+Play?
  - `Play`: Play
  	- `Shift`: jump to Cue point //TODO: move to S+Cue?
  - `Mode 1`: Hotcue
@@ -79,7 +83,7 @@ Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.
 	* decrease max tempo pitch slider (8, 32, 100)
 	* increase max tempo pitch slider (8, 32, 100)
 	* reverse (play back)
- - `Mode 6` (Shift + Mode 1): `Press and Hold` Loop Rolls (1/8, 1/4, 1/2, 1, 2, 4, 8, 16). It will create a loop of the relative dimension and activate the `Slip` function. On button release it will deactivate the loop and use the `Slip` to jump.
+ - `Mode 6` (Shift + Mode 1): `Press and Hold` Loop Rolls (1/8, 1/4, 1/2, 1, 2, 4, 8, 16). It will create a loop of the relative dimension and activate the `Slip` function. On button release, it will deactivate the loop and use the `Slip` to jump.
  - `Mode 8` (Shift + Mode 4): Play Sampler
  	- `Shift`: Cue Sampler (i.e. pause it) //TODO
  - `Pitch`: Tempo pitch
@@ -91,7 +95,7 @@ Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.
 
 
 
-### Whole Description on Fx effects:
+### Whole Description of Fx effects:
 At the moment, if no effect is active, `Filter Knob` will act as Filter, independently for each Deck.
 If at least one effect is active, `Filter Knob` will act as global (for all 3) effect Knob (`Super Knob`).
 In Mode FxDeck, `Filter Fx N` will only toggle the Fx effect on the relative deck. Even if there are Fx Effects active, `Filter Knobs` of other decks will only act as Filters.
