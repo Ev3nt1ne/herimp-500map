@@ -1,4 +1,30 @@
 
+9:
+	Integrated changes from resetreboot
+		1 vumeter update is bugged, restored old
+		2 hotcue colors added (nice job!)
+		3 fixed the crossfader curve, added personalized tangent function
+		4 no idea why beatsync on the loop button, when we already have it in the sync button, restored old
+		5 fixed beatloop functions and led
+		6 changed looprolls leds
+		7 tested the browsing library feature, but It was broken and I restored the old one
+	Other Fixes:
+	 - Fixed In and Out loop behavior. Long presing them is the same feature as wheel in Serato
+	 - added shift+push, shift+in and shift+out.
+	 - added softTakeover to pitch
+	 	* could not add it to EQ, Gain, and Volume as well, because the GUI won't initialize
+			so I preferred a better initialization rather than softTakeover function
+	 - Fixed scratch wheel
+	 - Fixed/added scratch wheel shift function
+	 - fixed some softTakeover bugs and improved the feature for filter knobs
+
+	 ** Bonus: I tried to think of another, simpler and more similar too DJUCED, way to
+	 		manage the FX commands, drawing graphs and possibilities tables, but could
+			not come up with one. Still I'm looking to improve it in the future ^^
+
+8:
+	Fixed Master vuMeters (Bentheshrubber)
+
 7:
 	Added BeatAlign and Tempo OK
 	Fixed play while cueing
@@ -10,9 +36,8 @@
 		beatjump faster, since I'm not using sampler that much). Anyway I left
 		the other configuration commented out so it's faster to move from one to
 		the other
-	BeatJump: added also x16 x32 x64 with the shift. Updated also Leds. (present 
+	BeatJump: added also x16 x32 x64 with the shift. Updated also Leds. (present
 		only in the pad4 version)
-
 
 6:
 	small fixes for beatmatch.

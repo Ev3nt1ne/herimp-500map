@@ -51,6 +51,7 @@ DJCi500.FxLedtimer;
 DJCi500.FxD1Active = [0, 0, 0]; //Here I decided to put only 3 effects
 DJCi500.FxD2Active = [0, 0, 0]; //Here I decided to put only 3 effects
 DJCi500.FxDeckSel = 0; // state variable for fx4 to decide the deck
+DJCi500.prevFilterUse = [0, 0]; //id of the array, one for each deck
 DJCi500.pitchRanges = [0.08, 0.32, 1]; //select pitch range
 DJCi500.pitchRangesId = [0, 0]; //id of the array, one for each deck
 DJCi500.slowPauseSetState = [0, 0];
@@ -83,12 +84,37 @@ DJCi500.activeSlicerMode = [
     DJCi500.slicerModes.contSlice
 ];
 DJCi500.slicerLoopBeat8 = [0, 0, 0, 0];
+
+// Colors
+DJCi500.PadColorMapper = new ColorMapper({
+    0xFF0000: 0x60,
+    0xFFFF00: 0x7C,
+    0x00FF00: 0x1C,
+    0x00FFFF: 0x1F,
+    0x0000FF: 0x03,
+    0xFF00FF: 0x42,
+    0xFF88FF: 0x63,
+    0xFFFFFF: 0x7F,
+    0x000088: 0x02,
+    0x008800: 0x10,
+    0x008888: 0x12,
+    0x228800: 0x30,
+    0x880000: 0x40,
+    0x882200: 0x4C,
+    0x888800: 0x50,
+    0x888888: 0x52,
+    0x88FF00: 0x5C,
+    0xFF8800: 0x74,
+});
+
+DJCi500.xFaderScratch = 0
+
 ///////////////////////
 
-DJCi500.vuMeterUpdateMaster = function(value, _group, _control) {
+DJCi500.vuMeterUpdateMaster = function(value, _group, control) {
     value = (value * 122) + 5;
-    midi.sendShortMsg(0xB0, 0x40, value);
-    midi.sendShortMsg(0xB0, 0x41, value);
+    var control = (control === "VuMeterL") ? 0x40 : 0x41;
+    midi.sendShortMsg(0xB0, control, value);
 };
 
 DJCi500.vuMeterUpdateDeck = function(value, group, _control, _status) {
@@ -108,16 +134,25 @@ DJCi500.init = function() {
 
 	DJCi500.AutoHotcueColors = true;
 
+    // Take care of the status of the crossfader status
+    DJCi500.crossfaderEnabled = true;
+
+    // Ask the controller to send all current knob/slider values over MIDI, which will update
+    // the corresponding GUI controls in MIXXX.
+    midi.sendShortMsg(0xB0, 0x7F, 0x7F);
+
     // Turn On Vinyl buttons LED(one for each deck).
     midi.sendShortMsg(0x91, 0x03, 0x7F);
     midi.sendShortMsg(0x92, 0x03, 0x7F);
 	//Turn On Browser button LED
 	midi.sendShortMsg(0x90, 0x05, 0x10);
+
 	//Softtakeover for Pitch fader
-    engine.softTakeover("[Channel1]", "rate", true);
-    engine.softTakeover("[Channel2]", "rate", true);
-    engine.softTakeoverIgnoreNextValue("[Channel1]", "rate");
-    engine.softTakeoverIgnoreNextValue("[Channel2]", "rate");
+    //TODO: not working
+    engine.softTakeover("[EffectRack1_EffectUnit1]", "super1", true);
+    engine.softTakeover("[EffectRack1_EffectUnit2]", "super1", true);
+    engine.softTakeover("[QuickEffectRack1_[Channel1]]", "super1", true);
+    engine.softTakeover("[QuickEffectRack1_[Channel2]]", "super1", true);
 
 	// Connect the VUMeters
     engine.connectControl("[Channel1]", "VuMeter", "DJCi500.vuMeterUpdateDeck");
@@ -129,7 +164,7 @@ DJCi500.init = function() {
 
 	engine.getValue("[Master]", "VuMeterL", "DJCi500.vuMeterUpdateMaster");
     engine.getValue("[Master]", "VuMeterR", "DJCi500.vuMeterUpdateMaster");
-	engine.getValue("[Controls]", "AutoHotcueColors", "DJCi500.AutoHotcueColors");
+	//sengine.getValue("[Controls]", "AutoHotcueColors", "DJCi500.AutoHotcueColors");
 
     //Ev3nt1ne Code
     var fx1D1Connection = engine.makeConnection('[EffectRack1_EffectUnit1_Effect1]', 'enabled', DJCi500.fx1D1Callback);
@@ -145,10 +180,6 @@ DJCi500.init = function() {
     //script.bindConnections('[Channel1]', controlsToFunctions, true);
 
 
-	// Ask the controller to send all current knob/slider values over MIDI, which will update
-    // the corresponding GUI controls in MIXXX.
-    midi.sendShortMsg(0xB0, 0x7F, 0x7F);
-
     //Turn on lights:
     for (var i = 0; i < 2; i++) {
         midi.sendShortMsg(0x96+i, 0x40, 0x2);
@@ -159,9 +190,118 @@ DJCi500.init = function() {
         midi.sendShortMsg(0x96+i, 0x46, 0x24);
     }
 
+    // Bind the hotcue colors
+    DJCi500.enableHotcueColors();
+
     DJCi500.FxLedtimer = engine.beginTimer(250,"DJCi500.blinkFxLed()");
 };
 
+// Enable Hotcue colors
+DJCi500.enableHotcueColors = function () {
+    DJCi500.padsColor = {};
+    DJCi500.padsEnabled = {};
+    for (var channel = 1; channel <= 2; channel++) {
+        for (var i = 0; i <= 7; i++) {
+          DJCi500.padsColor[i + ((channel - 1) * 8)] = engine.makeConnection('[Channel' + channel +']', 'hotcue_' + (i + 1) + '_color', DJCi500.hotcueColorCallback);
+          DJCi500.padsEnabled[i + ((channel - 1) * 8)] = engine.makeConnection('[Channel' + channel +']', 'hotcue_' + (i + 1) + '_enabled', DJCi500.hotcueEnabledCallback);
+          // Make the default light gray, a dim white
+          midi.sendShortMsg(0x96 + (channel - 1), 0x00 + i, 0x52);
+          // Send the same color to the shifted cue button
+          midi.sendShortMsg(0x96 + (channel - 1), 0x08 + i, 0x52);
+        }
+    }
+}
+
+// Hotcue color callback
+// Setting it to gray or dim white as it is not used in Mixxx
+// color palette to identify a non-set hotcue
+DJCi500.hotcueColorCallback = function(value, group, control) {
+    var channel = parseInt(group.charAt(8)) - 1;
+    var cueButton = parseInt(control.split('_')[1]);
+
+    if (value !== -1) {
+        var color = DJCi500.PadColorMapper.getValueForNearestColor(value);
+        midi.sendShortMsg(0x96 + channel, cueButton - 1, color);
+        // Send the same color to the shifted cue button
+        midi.sendShortMsg(0x96 + channel, (cueButton - 1) + 8, color);
+    } else {
+        midi.sendShortMsg(0x96 + channel, cueButton - 1, 0x52);
+        // Send the same color to the shifted cue button
+        midi.sendShortMsg(0x96 + channel, (cueButton - 1) + 8, 0x52);
+    }
+}
+
+DJCi500.hotcueEnabledCallback = function(value, group, control) {
+    var channel = parseInt(group.charAt(8)) - 1;
+    var cueButton = parseInt(control.split('_')[1]);
+    if (value) {
+        var color = engine.getValue(group, "hotcue_" + cueButton + "_color");
+        var code = DJCi500.PadColorMapper.getValueForNearestColor(color);
+        midi.sendShortMsg(0x96 + channel, cueButton - 1, code);
+        midi.sendShortMsg(0x96 + channel, (cueButton - 1) + 8, code);
+    } else {
+        midi.sendShortMsg(0x96 + channel, cueButton - 1, 0x52);
+        midi.sendShortMsg(0x96 + channel, (cueButton - 1) + 8, 0x52);
+    }
+}
+// Crossfader control, set the curve
+DJCi500.crossfaderSetCurve = function(channel, control, value, _status, _group) {
+    switch(value) {
+        case 0x00:
+            // Mix
+            script.crossfaderCurve(0,0,127);
+            DJCi500.xFaderScratch = 0;
+            break;
+        case 0x7F:
+            // Scratch
+            script.crossfaderCurve(127,0,127);
+            DJCi500.xFaderScratch = 1;
+            break;
+    }
+}
+// Crossfader enable or disable
+DJCi500.crossfaderEnable = function(channel, control, value, _status, _group) {
+    if(value) {
+        DJCi500.crossfaderEnabled = true;
+    } else {
+        DJCi500.crossfaderEnabled = false;
+        engine.setValue("[Master]", "crossfader", 0);    // Set the crossfader in the middle
+    }
+}
+// Crossfader function
+DJCi500.crossfader = function(channel, control, value, status, group) {
+    if (DJCi500.crossfaderEnabled) {
+        //hotfix:
+        if (DJCi500.xFaderScratch) {
+            //var result = (Math.atan((value -63)/1) )/(Math.PI/2);
+            var result = 0;
+            if (value <= 0)
+            {
+                result = -1;
+            } else if (value >= 127)
+            {
+                result = 1;
+            }
+            else {
+                result = Math.tan((value-64)*Math.PI/2/63)/32;
+            }
+            engine.setValue(group, "crossfader", result);
+        }
+        else {
+            engine.setValue(group, "crossfader", (value/64)-1);
+        }
+    }
+}
+// Browser button. We move it to a custom JS function to avoid having to focus the Mixxx window for it to respond
+/* broken
+DJCi500.moveLibrary = function(channel, control, value, status, group) {
+    if (value > 0x3F) {
+        engine.setValue('[Playlist]', 'SelectTrackKnob', -1);
+    } else {
+        engine.setValue('[Playlist]', 'SelectTrackKnob', 1);
+    }
+}
+*/
 
 // The Vinyl button, used to enable or disable scratching on the jog wheels (One per deck).
 
@@ -182,7 +322,7 @@ DJCi500.vinylButton = function(_channel, _control, value, status, _group) {
 DJCi500._scratchEnable = function(deck) {
     var alpha = 1.0/8;
     var beta = alpha/32;
-    engine.scratchEnable(deck, 248, 33 + 1/3, alpha, beta);
+    engine.scratchEnable(deck, 128 /*248*/, 33 + 1/3, alpha, beta);
 };
 
 
@@ -190,6 +330,17 @@ DJCi500._convertWheelRotation = function (value) {
     // When you rotate the jogwheel, the controller always sends either 0x1
     // (clockwise) or 0x7F (counter clockwise). 0x1 should map to 1, 0x7F
     // should map to -1 (IOW it's 7-bit signed).
+    /* it should be like this but it does not work
+    var sign = value < 0x40 ? 1 : -1;
+    var interval = 0;
+    if (sign==1) {
+        interval = (11*value + 51) / 62;
+    } else {
+        interval = (-11*value + 1460) / 63;
+    }
+    interval = interval * sign;
+    return interval;
+    */
     return value < 0x40 ? 1 : -1;
 };
 
@@ -215,7 +366,7 @@ DJCi500.wheelTouch = function(channel, control, value, _status, _group) {
 
 // The touch action on the jog wheel's top surface while holding shift
 DJCi500.wheelTouchShift = function(channel, control, value, _status, _group) {
-    var deck = channel - 3;
+    var deck = channel-3;
     // We always enable scratching regardless of button state.
     if (value > 0) {
         DJCi500._scratchEnable(deck);
@@ -233,16 +384,16 @@ DJCi500.wheelTouchShift = function(channel, control, value, _status, _group) {
 DJCi500.scratchWheel = function(channel, control, value, status, _group) {
     var deck;
     switch (status) {
-    case 0xB1:
-    case 0xB4:
-        deck  = 1;
-        break;
-    case 0xB2:
-    case 0xB5:
-        deck  = 2;
-        break;
-    default:
-        return;
+        case 0xB1:
+        case 0xB4:
+            deck  = 1;
+            break;
+        case 0xB2:
+        case 0xB5:
+            deck  = 2;
+            break;
+        default:
+            return;
     }
     var interval = DJCi500._convertWheelRotation(value);
     var scratchAction = DJCi500.scratchAction[deck];
@@ -265,6 +416,13 @@ DJCi500.bendWheel = function(channel, control, value, _status, _group) {
     engine.setValue(
         "[Channel" + channel + "]", "jog", interval * DJCi500.bendScale);
 };
+
+DJCi500.spinback_button = function(channel, control, value, status, group) {
+        var deck = parseInt(group.substring(8,9)); // work out which deck we are using
+        engine.spinback(deck, value > 0, 2.5); // use default starting rate of -10 but decrease speed more quickly
+    }
+
+
 //Loop Encoder
 DJCi500.loopHalveDouble = function (channel, control, value, status, group) {
     if (value > 64) {
@@ -369,12 +527,21 @@ DJCi500.filterKnob1 = function (channel, control, value, status, group) {
     var deck_sel = (DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 1);
     //engine.getValue(string group, string key);
     if (fx_active && deck_sel) {
+        if (DJCi500.prevFilterUse[0] != 1)
+        {
+            engine.softTakeoverIgnoreNextValue("[EffectRack1_EffectUnit1]", "super1");
+        }
         //engine.setValue("[EffectRack1_EffectUnit1]", "mix", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
         engine.setValue("[EffectRack1_EffectUnit1]", "super1", Math.abs(script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127) - 0.5)*2 );
-        //This below does not work somehow
-        //engine.setValue("[EffectRack1_EffectUnit1]", "super1", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 63, 127) );
+        DJCi500.prevFilterUse[0] = 1;
     } else {
+        if (DJCi500.prevFilterUse[0] != 0)
+        {
+            engine.softTakeoverIgnoreNextValue("[QuickEffectRack1_[Channel1]]", "super1");
+        }
         engine.setValue("[QuickEffectRack1_[Channel1]]", "super1", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+        //engine.setValue("[QuickEffectRack1_[Channel1]]", "super1", script.absoluteLin(value, 0.0, 1.0, 0, 127));
+        DJCi500.prevFilterUse[0] = 0;
     }
 };
 DJCi500.filterKnob2 = function (channel, control, value, status, group) {
@@ -382,10 +549,20 @@ DJCi500.filterKnob2 = function (channel, control, value, status, group) {
     var deck_sel = (DJCi500.FxDeckSel == 0) || (DJCi500.FxDeckSel == 2);
     //engine.getValue(string group, string key);
     if (fx_active && deck_sel) {
+        if (DJCi500.prevFilterUse[1] != 1)
+        {
+            engine.softTakeoverIgnoreNextValue("[EffectRack1_EffectUnit2]", "super1");
+        }
         //engine.setValue("[EffectRack1_EffectUnit2]", "mix", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
         engine.setValue("[EffectRack1_EffectUnit2]", "super1", Math.abs(script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127) - 0.5)*2 );
+        DJCi500.prevFilterUse[1] = 1;
     } else {
+        if (DJCi500.prevFilterUse[1] != 0)
+        {
+            engine.softTakeoverIgnoreNextValue("[QuickEffectRack1_[Channel2]]", "super1");
+        }
         engine.setValue("[QuickEffectRack1_[Channel2]]", "super1", script.absoluteNonLin(value, 0.0, 0.5, 1.0, 0, 127));
+        DJCi500.prevFilterUse[1] = 0;
     }
 };
 
