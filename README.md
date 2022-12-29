@@ -25,7 +25,7 @@ Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.
  	- `Shift`: Mode FxDefault
  - `NRJ`: Toggle AutoDJ
 
-![Deck View](https://raw.githubusercontent.com/Ev3nt1ne/herimp-500map/tree/main/other/deck.jpg)
+![Deck View](https://raw.githubusercontent.com/Ev3nt1ne/herimp-500map/main/other/deck.jpg)
 Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.hercules.com)
 
  - `Vinyl`: Toggle Scratch on wheel
