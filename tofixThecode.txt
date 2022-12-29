@@ -2,5 +2,3 @@
 
  - long press load
  	- load the same song at the same point --> it's already double press
-
- - scratch wheel fix

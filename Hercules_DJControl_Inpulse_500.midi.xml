@@ -1365,7 +1365,19 @@
 			<!-- to Comment -->
 			<control>
 				<group>[Channel1]</group>
-				<key>DJCi500.TestColor</key>
+				<!--<key>DJCi500.TestColor</key>-->
+				<key>reverse</key>
+				<description>testing color</description>
+				<status>0x96</status>
+				<midino>0x47</midino>
+				<options>
+					<normal />
+				</options>
+			</control>
+
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.spinback_button</key>
 				<description>testing color</description>
 				<status>0x96</status>
 				<midino>0x44</midino>
@@ -2531,6 +2543,28 @@
 					<script-binding />
 				</options>
 			</control>
+			<control>
+				<group>[Channel2]</group>
+				<!--<key>DJCi500.TestColor</key>-->
+				<key>reverse</key>
+				<description>testing color</description>
+				<status>0x97</status>
+				<midino>0x47</midino>
+				<options>
+					<normal />s
+				</options>
+			</control>
+
+			<control>
+				<group>[Channel1]</group>
+				<key>DJCi500.spinback_button</key>
+				<description>testing color</description>
+				<status>0x97</status>
+				<midino>0x44</midino>
+				<options>
+					<script-binding />
+				</options>
+			</control>
 
 			<!-- Shift -->
 			<control>
@@ -3049,6 +3083,7 @@
 				<midino>0x08</midino>
 				<options>
 					<fourteen-bit-msb />
+					<soft-takeover />
 				</options>
 			</control>
 			<control>
@@ -3058,6 +3093,7 @@
 				<midino>0x28</midino>
 				<options>
 					<fourteen-bit-lsb />
+					<soft-takeover />
 				</options>
 			</control>
 			<!--Jog wheel	-->
@@ -3192,6 +3228,7 @@
 				<midino>0x08</midino>
 				<options>
 					<fourteen-bit-msb />
+					<soft-takeover />
 				</options>
 			</control>
 			<control>
@@ -3201,6 +3238,7 @@
 				<midino>0x28</midino>
 				<options>
 					<fourteen-bit-lsb />
+					<soft-takeover />
 				</options>
 			</control>
 			<!--Jog wheel-->
@@ -3250,10 +3288,9 @@
 
 			<!-- CC's MIDI Channel 5 (0xB4  Deck B - SHIFT mode)-->
 			<!--Jog wheel-->
-			<!--
 			<control>
 				<group>[Channel1]</group>
-				<key>DJCi500.scratchWheelShift </key>
+				<key>DJCi500.scratchWheel</key>
 				<description>SHIFT + Scratch Deck A (Jog-Wheel)</description>
 				<status>0xB4</status>
 				<midino>0x0A</midino>
@@ -3261,14 +3298,12 @@
 					<script-binding />
 				</options>
 			</control>
--->
 
 			<!-- CC's MIDI Channel 6 (0xB5  Deck B - SHIFT mode)-->
 			<!--Jog wheel-->
-			<!--
 			<control>
 				<group>[Channel2]</group>
-				<key>DJCi500.scratchWheelShift </key>
+				<key>DJCi500.scratchWheel</key>
 				<description>SHIFT + Scratch Deck B (Jog-Wheel)</description>
 				<status>0xB5</status>
 				<midino>0x0A</midino>
@@ -3276,7 +3311,7 @@
 					<script-binding />
 				</options>
 			</control>
--->
+
 		<!-- FX-->
 		<!---->
 		<control>
