@@ -1,5 +1,8 @@
-# herimp-500map
-Mixxx: Hercules Impulse 500 mappings
+# Mixxx: Hercules Impulse 500 mappings
+
+## To Use it:
+
+Simply copy the `Hercules-DJControl-Inpulse-500-script.js` and `Hercules_DJControl_Inpulse_500.midi.xml` files and follow the [official Mixxx guide](https://manual.mixxx.org/2.3/en/chapters/controlling_mixxx.html#installing-a-mapping-from-the-forum).
 
 ## Description
 
