@@ -6,7 +6,7 @@ Mixxx: Hercules Impulse 500 mappings
 Only the buttons/knobs that are coded, and depend on Mixxx are presented.
 Others, such [Aux], [Mic], [Master], and [HeadPhones] are not described, since they are hardware feature that do not depend on Mixxx.
 
-![Global View](https://github.com/Ev3nt1ne/herimp-500map/other/global.jpg?raw=true)
+![My Image](other/global.jpg)
 
  - [Browse Enc]: Rotate to select from the Library (atm you need to be focused on Mixxx)
  	- [Shift]: To expand
