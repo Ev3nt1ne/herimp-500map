@@ -6,7 +6,7 @@ Mixxx: Hercules Impulse 500 mappings
 Only the buttons/knobs that are coded, and depend on Mixxx are presented.
 Others, such `Aux`, `Mic`, `Master`, and `HeadPhones` are not described, since they are hardware feature that do not depend on Mixxx.
 
-![Global View](https://github.com/Ev3nt1ne/herimp-500map/tree/main/other/global.jpg)
+![Global View](https://raw.githubusercontent.com/Ev3nt1ne/herimp-500map/main/other/global.jpg)
 Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.hercules.com)
 
  - `Browse Enc`: Rotate to select from the Library (atm you need to be focused on Mixxx)
@@ -25,7 +25,7 @@ Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.
  	- `Shift`: Mode FxDefault
  - `NRJ`: Toggle AutoDJ
 
-![Deck View](https://github.com/Ev3nt1ne/herimp-500map/tree/main/other/deck.jpg)
+![Deck View](https://raw.githubusercontent.com/Ev3nt1ne/herimp-500map/tree/main/other/deck.jpg)
 Picture is kindly provided by ![Hercules Computer Technology, Inc.](https://www.hercules.com)
 
  - `Vinyl`: Toggle Scratch on wheel
