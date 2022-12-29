@@ -18,6 +18,8 @@
 	 - Fixed/added scratch wheel shift function
 	 - fixed some softTakeover bugs and improved the feature for filter knobs
 
+	 - Added full README
+	 
 	 ** Bonus: I tried to think of another, simpler and more similar too DJUCED, way to
 	 		manage the FX commands, drawing graphs and possibilities tables, but could
 			not come up with one. Still I'm looking to improve it in the future ^^

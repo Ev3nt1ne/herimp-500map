@@ -1,0 +1,2 @@
+ - fix shift cue, shift play (invert them)
+ - fix sampler
