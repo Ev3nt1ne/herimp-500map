@@ -3,28 +3,13 @@
 //
 // ***************************************************************************
 // * Mixxx mapping script file for the Hercules DJControl Inpulse 500.
-// * Author: DJ Phatso, contributions by Kerrick Staley
-// * Version 1.0c (Fall 2020)
+// * Authors: Ev3nt1ne, DJ Phatso
+// *    contributions by Kerrick Staley, resetreboot, Bentheshrubber, ThatOneRuffian
+// * Version 2.0a (Dec 2022)
 // * Forum: https://mixxx.discourse.group/t/hercules-djcontrol-inpulse-500/19739
 // * Wiki: https://mixxx.org/wiki/doku.php/hercules_djcontrol_inpulse_500
 //
 
-//  Version 1.0c:
-//	* Hot Cue: implementation of the Color API (Work in progress)
-//		- Assigned color directly to pad (XML)
-//	* Added DECK LED number - On when playing
-//  * Moved Beatjump to Pad mode 3 (Slicer)
-//	* Set different color for upper (Sampler 1-4) and lower (Sampler 5-8) sampler pads
-//
-//  Version 1.0 - Based upon Inpulse 300 v1.2 (official)
-//
-// TO DO: Functions that could be implemented to the script:
-//
-// * Hot Cue: implementation of the Color API (Work in progress)
-// * Loop: Keep SLIP active (if already enabled) when exiting from rolls
-// * FX/Filter:
-//		- See how to preselect effects for a rack to use button FX1/2/3/4
-// * Assing Crossfader curve for swtich
 //
 // ****************************************************************************
 var DJCi500 = {};
