@@ -13,6 +13,7 @@
 //
 // ****************************************************************************
 var DJCi500 = {};
+
 ///////////////////////////////////////////////////////////////
 //                       USER OPTIONS                        //
 ///////////////////////////////////////////////////////////////
@@ -30,9 +31,9 @@ DJCi500.kScratchActionNone = 0;
 DJCi500.kScratchActionScratch = 1;
 DJCi500.kScratchActionSeek = 2;
 DJCi500.kScratchActionBend = 3;
-DJCi500.FxLedtimer;
 
 //Ev3nt1ne Global Var:
+DJCi500.FxLedtimer;
 DJCi500.FxD1Active = [0, 0, 0]; //Here I decided to put only 3 effects
 DJCi500.FxD2Active = [0, 0, 0]; //Here I decided to put only 3 effects
 DJCi500.FxDeckSel = 0; // state variable for fx4 to decide the deck

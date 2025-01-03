@@ -1,2 +1,20 @@
  - fix shift cue, shift play (invert them)
- - fix sampler
+ - fix sampler (pause etc.)
+ - fix turn wheel is not working
+ - move sampler and BeatJump (try to make it prametric)
+ - change fx
+ - make 4 decks
+
+
+
+ /usr/share/mixxx/controllers
+
+ https://github.com/mixxxdj/mixxx/wiki/Midi-Scripting#turning-a-2-deck-controller-into-a-4-deck-controller
+
+
+ export: https://mixxx.discourse.group/t/export-import-playlists/16314
+ https://github.com/mixxxdj/mixxx/wiki/faq#how_can_i_move_my_music_to_another_folder_or_hard_drive_without_loosing_information_like_bpm_or_cue_points
+
+
+partiiton:
+https://help.ubuntu.com/community/ResizeEncryptedPartitions
